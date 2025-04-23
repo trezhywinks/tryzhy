@@ -1,6 +1,6 @@
 #!/bin/bash
 
-##sudo apt update
+sudo apt update
 sudo apt install npm
-npm install nodemon
-npm install express
+sudo npm install nodemon
+sudo npm install express
