@@ -3,14 +3,58 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="Hello world">
-  <meta name="author" content="tryzhy">
+  <meta name="description" content="Hello World">
+  <meta name="author" content="curioso, why not?">
   <meta name="keywords" content="">
   <title>TryZhy</title>
 </head>
+<style>
+body,html{background: #1d2328; color:#c9d1d9; font-size:20px; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;}
+.login{ background: #1d2328; padding: 20px; padding-bottom: 30px; text-align: center; width: 370px; margin: 0 auto 10px; border-radius: 5px;}
+.server{
+text-align: center;} input{background: transparent; color:#fff; border:none; font-size: 20px; padding:10px;outline:none; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;}
+.input{display:flex; height: 5vh; border-radius: 5px; overflow: hidden; background: #151515; width: 90%; justify-content: space-between; margin: 0 auto 10px;}
+.chat{margin-top: -10px; margin-right: 20px;} .lab{width:90%; text-align: left; margin: 0 auto 10px;}
+.screen{ width: 100%;}
+@media(max-width:999px){ .input{ width: 90%;}}
+#pass{ width:100%;}
+</style>
 <body>
 <div class="server">
-<h2>Hello user!</h2>
+<h2>Welcome to TrzyZhy</h2>
+<div class="login">
+<div class="lab"<label>Nickname</label></div>
+<div class="input">
+<input type="text" name="user"/>
+</div>
+<br>
+<div class="lab"><label>Senha</label></div>
+<div class="input">
+<div class="screen">
+<input type="password" name="pass" id="pass"/>
+</div>
+<div class="chat"><p class="cli">Ve</p> </div>
+<script>
+document.querySelector('.cli').addEventListener('click', () => {
+const pass = document.getElementById('pass');
+const cli = document.querySelector('.cli');
+if (pass.type === "password"){
+pass.type = "text";
+cli.innerText = "Es"
+} else {
+pass.type = "password";
+cli.innerText = "Ve"
+
+console.log("ta procurando oq cz?");
+}
+});
+</script>
+</div>
+<div class="input">
+<style>button{width:100%; background: #2c974b; color: #fff; border:none; font-size: 17px; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;}</style>
+<button>Sign in</button>
+</div>
+</div>
 </div>
 </body>
 </html>
