@@ -1,4 +1,7 @@
 <html>
+<!--
+1d2328
+-->
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +13,10 @@
 </head>
 <style>
 *{margin:0; padding:0; box-sizing: border-box;}
-body,html{background: #1d2328; color:#c9d1d9; font-size:20px; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;}
-.login{ background: #1d2328; padding: 20px; padding-bottom: 30px; text-align: center; width: 370px; margin: 0 auto 10px; border-radius: 5px;}
+body,html{
+background: #141414;
+ color:#c9d1d9; font-size:20px; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;}
+.login{ background: #1d2328; padding: 20px; padding-bottom: 30px; text-align: center; width: 370px; margin:10px; border-radius: 10px;}
 .server{
 text-align: center;} input{background: transparent; color:#fff; border:none; font-size: 20px; padding:10px;outline:none; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;}
 .input{display:flex; height: 5vh; border-radius: 5px; overflow: hidden; background: #151515; width: 90%; justify-content: space-between; margin: 0 auto 10px;}
@@ -20,11 +25,26 @@ text-align: center;} input{background: transparent; color:#fff; border:none; fon
 @media(max-width:999px){ .input{ width: 90%;}}
 #pass{ width:100%;}
 #lo_o{color: white;}
+.desktop{
+display: flex;
+justify-content: space-between;
+width: 980px;
+background: #121212;
+padding: 10px; border-radius: 30px;
+margin: 0 auto 10px;
+box-shadow: 1px 1px 7px 7px #00000052;
+}
 </style>
 <body>
-<div class="server">
 <br>
-<h4>Welcome to TryZhy</h4><br>
+<div class="desktop">
+<div class="left">
+<div class="mkima">
+<img src="ebf3058849bd022783acf7619631726a.gif" width="450" style="border-radius: 20px; margin: 10px;"/><br>
+<h4>Welcome to TryZhy</h4>
+</div>
+</div>
+<div class="server">
 <div class="login">
 <div class="lab"<label id="nick">Nickname</label></div>
 <div class="input">
@@ -95,12 +115,13 @@ console.log("ta procurando oq cz?");
 </div>
 <div class="signup">
 <style>
-.signup{width: 370px; margin: 0 auto 10px; padding: 10px; background: #1d2328;
+.signup{border-radius: 10px; width: 370px; margin: 0 auto 10px; padding: 10px; background: #1d2328;
 }
 </style>
 <h4 style="margin: 10px; color: #3193e4;">Criar uma conta</h4>
 <p style="font-size: 14px;">Nao tem uma conta ainda?</p>
 <span style="font-size: 13px; color:#3193e4;">clique aqui para criar uma conta no server.</span>
+</div>
 </div>
 </div>
 </body>
