@@ -61,7 +61,7 @@ box-shadow: 1px 1px 7px 7px #00000052;
  #lip, #ok_o{ width: 90%;}
 }
 
-.left{ margin-top: 5%;}
+.left{ margin-top: 10%;}
 button{
  font-family: var(--sam);
 }
