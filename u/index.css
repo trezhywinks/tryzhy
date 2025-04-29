@@ -1,0 +1,14 @@
+*{
+margin: 0; padding:0; box-sizing:border-box;}
+
+:root {
+ --sam: "SF Pro Text", "SF Pro Icons", system, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", "Ubuntu", "Cantarell", "Fira Sans", sans-serif;
+ --color-whats: #a333e4;
+}
+
+body{
+ font-family: var(--sam);
+ font-size: 17px;
+ font-weight: 500;
+}
+
