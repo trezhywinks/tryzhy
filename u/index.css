@@ -6,9 +6,10 @@ margin: 0; padding:0; box-sizing:border-box;}
  --color-whats: #a333e4;
 }
 
-body{
+body, html{
  font-family: var(--sam);
  font-size: 17px;
  font-weight: 500;
+ background: #000; color: #fff;
 }
 
