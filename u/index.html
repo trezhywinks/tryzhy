@@ -1,5 +1,6 @@
 <html>
 <head>
+<!-- 👾 iberver _main.js  -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -57,13 +58,25 @@ background: linear-gradient(#121212, #121212, #141414);
 </style>
 <h3 style="font-weight: 800; font-size: 30px;">TryZhy Winks</h3><h3 style="color:#3193e4 ; font-size: 18px;">Buscar</h3> </div>
 <div class="buts">
-<div class="sus"><span>Servidores</span></div>
+<div class="sus" id="_servidores_o"><span>Servidores</span></div>
 <div class="sus"><span>Susurros</span></div>
-<div class="sus"><span>Winks Bot</span></div>
+<div class="sus" id="divbot"><span>Winks Bot</span></div>
 
 </div>
-<div class="servers">
+
+<div class="botswinks_obots">
 <style>
+.botswinks_obots{display: none; text-align: center;  padding: 10px; margin-top: 10%; width: 100%;}
+</style>
+<center>
+<img src="nay_cat.gif" width="60" height="60"><br>
+</center>
+<h3>Volte mais tarde!<br>Estamos atualizando o Winks Bot</h3>
+</div>
+
+<div class="naycat">
+<div class="servers">
+<style> 
 .servers{ background: #121212; border-radius: 5px; padding: 10px; display: flex; margin: 0 auto 10px;}
 .myser{margin-left: 10px;}
 </style>
@@ -73,6 +86,7 @@ background: linear-gradient(#121212, #121212, #141414);
 <div class="myser">
 <h3>Wine Winks</h3>
 <p style="opacity: 0.6; font-size: 14px;">Welcome to my server</p>
+</div>
 </div>
 </div>
 <div class="you">
@@ -97,5 +111,19 @@ background: linear-gradient(#121212, #121212, #141414);
 </div>
 
 </div>
+<script>
+document.getElementById('divbot').addEventListener('click', () => {
+document.querySelector('.naycat').style.display = "none";
+document.querySelector('.botswinks_obots').style.display = "inline";
+})
+
+document.getElementById('_servidores_o').addEventListener('click', () => {
+document.querySelector('.naycat').style.display = "inline";
+document.querySelector('.botswinks_obots').style.display = "none";
+})
+
+
+
+</script>
 </body>
 </html>
