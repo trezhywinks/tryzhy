@@ -1,6 +1,6 @@
 <html>
 <head>
-<!-- 👾 iberver _main.js  -->
+<!-- 👾 -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,6 +46,12 @@ overflow: hidden;
 margin-top: -4px;
 background: linear-gradient(#121212, #121212, #141414);
  transition: 0.5s}
+#blues_3, #blues_2{
+color: #fff;
+opacity: 0.6;
+transition: 0.5s;
+}
+#blues{ color: #3193e4; transition: 0.5s;}
 </style>
 <body>
 <div class="server">
@@ -58,9 +64,9 @@ background: linear-gradient(#121212, #121212, #141414);
 </style>
 <h3 style="font-weight: 800; font-size: 30px;">TryZhy Winks</h3><h3 style="color:#3193e4 ; font-size: 18px;">Buscar</h3> </div>
 <div class="buts">
-<div class="sus" id="_servidores_o"><span>Servidores</span></div>
-<div class="sus"><span>Susurros</span></div>
-<div class="sus" id="divbot"><span>Winks Bot</span></div>
+<div class="sus" id="_servidores_o"><span id="blues">Servidores</span></div>
+<div class="sus"><span id="blues_3">Susurros</span></div>
+<div class="sus" id="divbot"><span id="blues_2">Winks Bot</span></div>
 
 </div>
 
@@ -115,11 +121,21 @@ background: linear-gradient(#121212, #121212, #141414);
 document.getElementById('divbot').addEventListener('click', () => {
 document.querySelector('.naycat').style.display = "none";
 document.querySelector('.botswinks_obots').style.display = "inline";
+const blues_2 = document.getElementById('blues_2');
+const blues = document.getElementById('blues');
+blues.style.color = "white"; blues.style.opacity = "0.6"; 
+blues_2.style.color = "#3193e4"; blues_2.style.opacity = "1"; 
+
 })
 
 document.getElementById('_servidores_o').addEventListener('click', () => {
 document.querySelector('.naycat').style.display = "inline";
 document.querySelector('.botswinks_obots').style.display = "none";
+const bluess_2 = document.getElementById('blues_2');
+const bluess = document.getElementById('blues');
+bluess.style.color = "#3193e4"; blues.style.opacity = "1";
+bluess_2.style.color = "white"; blues_2.style.opacity = "0.6";
+
 })
 
 
