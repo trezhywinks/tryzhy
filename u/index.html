@@ -37,7 +37,7 @@ overflow: hidden;
 }
 
 .cont{ margin: 0 auto 10px;display: flex; width: 170vh; background: #121212; apdding: 10px; justify-contet: center;}
-.left{width: 470px; height: 100vh; background: #1d2328; padding: 10px;}
+.left{width: 470px; overflow:hidden; height: 100vh; background: #1d2328; padding: 10px;}
 .recad_o{margin-top: 30%; text-align: center; width: 100%;}
 .center{width: 80%; text-align: cetner;}
 .buts{padding: 10px; display: flex; justify-content: space-between;}
@@ -61,12 +61,35 @@ transition: 0.5s;
 from{opacity: 0;transform: translateY(-10px);} to{opacity:1; transform: translateY(0px);}}
 .typeh3{display: flex;}
 .setting_ss{margin: 10px;}
+.settingsf{
+padding: 10px;
+display: inline;
+transition: 0.5s; animation: --removet 4s ease-in;}
+.removet{display: none;}
+@keyframes --removet {
+
+from{transform: translateY(-250px);}
+to{transform: translateY(0px);}}
 </style>
 <body>
 <div class="server">
 
 <div class="cont">
 <div class="left">
+<div class="settingsf">
+
+<div class="topsettings">
+<style>.topsettings{display: flex; justify-content: space-between;}.back{margin-top: 10px;} .painfile{display: flex;}.namepain{margin: 10px;}</style>
+<div class="back"><h3>Voltar</h3></div>
+<div class="configh"><h2>Configuracoes</h2></div></div>
+<br>
+<div class="painfile">
+<div class="myfilepain">
+<img src="https://trezhy.onrender.com/imagens/68110e02fb074f380ffb1e1d.png" style="width: 70; height: 70; border-radius: 5px; border: 1px solid #121212;">
+</div>
+<div class="namepain"><h3>Wine Winks</h3><p style="opacity: 0.6; font-size: 15px;">Hello World</p></div>
+</div></div>
+<div class="removet">
 <div class="hello_o">
 <style>
 .hello_o{display: flex; justify-content: space-between;}
@@ -90,6 +113,21 @@ from{opacity: 0;transform: translateY(-10px);} to{opacity:1; transform: translat
 <span>
 <img src="./settings.svg">
 </span>
+<script>
+document.querySelector('.setting_ss').addEventListener('click', () => {
+const refig = document.querySelector('.removet');
+document.querySelector('.settingsf').style.display = "inline";
+refig.style.transform = "translateY(450px)";
+refig.style.transition = "0.5s";
+refig.style.opacity = "0";
+setTimeout(none, 300);
+//refig.style.display = "none";
+});
+
+function none(){
+document.querySelector('.removet').style.display = "none";
+}
+</script>
 </div>
 </div>
 <div class="susu">
@@ -132,6 +170,7 @@ from{opacity: 0;transform: translateY(-10px);} to{opacity:1; transform: translat
 <div class="myfile"><img src="https://trezhy.onrender.com/imagens/68110e02fb074f380ffb1e1d.png" style="width: 60; height: 60; border-radius: 100px;"></div>
 <div class="myname"><h3>wine winks</h3>
 <p style="font-size: 14px; opacity: 0.6;">Hello World</p>
+</div>
 </div>
 </div>
 </div>
