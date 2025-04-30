@@ -1,0 +1,39 @@
+document.getElementById('divbot').addEventListener('click', () => {
+document.querySelector('.naycat').style.display = "none";
+document.querySelector('.susu').style.display = "none";
+document.querySelector('.botswinks_obots').style.display = "inline";
+const blues_2 = document.getElementById('blues_2');
+const blues = document.getElementById('blues');
+const wetr = document.getElementById('blues_3');
+wetr.style.color = "white"; wetr.style.opacity = "0.6";
+blues.style.color = "white"; blues.style.opacity = "0.6";
+blues_2.style.color = "#3193e4"; blues_2.style.opacity = "1";
+
+});
+
+document.getElementById('susu').addEventListener('click', () => {
+document.querySelector('.naycat').style.display = "none";
+document.querySelector('.botswinks_obots').style.display = "none";
+document.querySelector('.susu').style.display = "inline";
+const blues_22 = document.getElementById('blues_2');
+const blues_3 = document.getElementById('blues_3');
+const blues2 = document.getElementById('blues');
+blues_22.style.color = "white"; blues.style.opacity = "0.6";
+blues2.style.color = "white"; blues.style.opacity = "0.6";
+blues_3.style.color = "#3193e4"; blues_3.style.opacity = "1";
+
+});
+
+
+document.getElementById('_servidores_o').addEventListener('click', () => {
+document.querySelector('.naycat').style.display = "inline";
+document.querySelector('.botswinks_obots').style.display = "none";
+document.querySelector('.susu').style.display = "none";
+const bluess_2 = document.getElementById('blues_2');
+const bluess = document.getElementById('blues');
+const suio = document.getElementById('blues_3');
+suio.style.color = "white"; suio.style.opacity = "0.6";
+bluess.style.color = "#3193e4"; blues.style.opacity = "1";
+bluess_2.style.color = "white"; blues_2.style.opacity = "0.6";
+
+});

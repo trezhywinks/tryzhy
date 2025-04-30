@@ -1,6 +1,7 @@
 const express = require('express');
 const figlet = require('figlet');
 const colors = require('colors');
+const path = require('path');
 const cors = require('cors');
 const app = express();
 const port = "9595";
@@ -9,7 +10,8 @@ app.use(cors());
 app.use(express.static('./server'));
 
 app.get('/u', (req, res) => {
-res.sendFile(__dirname + '/u/index.html')
+app.use(express.static(path.join(__dirname, 'u')));
+res.sendFile(path.join(__dirname, 'u','index.html'));
 })
 
 app.listen(port, () => {
