@@ -65,7 +65,7 @@ from{opacity: 0;transform: translateY(-10px);} to{opacity:1; transform: translat
 padding: 10px;
 display: none;
 transition: 0.5s; animation: --removet 4s ease-in;}
-.removet{display: inline;}
+.removet{display:;}
 @keyframes --removet {
 
 from{transform: translateY(-250px);}
@@ -119,16 +119,17 @@ to{transform: translateY(0px);}}
 document.querySelector('.setting_ss').addEventListener('click', () => {
 const refig = document.querySelector('.removet');
 document.querySelector('.settingsf').style.display = "inline";
-refig.style.transform = "translateY(450px)";
+//refig.style.transform = "translateY(450px)";
 refig.style.transition = "0.5s";
-refig.style.opacity = "0";
-setTimeout(none, 300);
-//refig.style.display = "none";
+//refig.style.opacity = "0";
+//setTimeout(none, 300);
+refig.style.display = "none";
 });
 
 function none(){
 document.querySelector('.removet').style.display = "none";
 }
+
 </script>
 </div>
 </div>
