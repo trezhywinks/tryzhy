@@ -54,6 +54,12 @@ transition: 0.5s;
 #blues{ color: #3193e4; transition: 0.5s;}
 
 .susu{display: none; text-align: center;  padding: 10px; margin-top: 10%; width: 100%;}
+.type_3{transition: 0.5s; animation: --type 0.5s ease-in}
+
+.fingh{animation: --type 0.5s ease-out}
+@keyframes --type{
+from{opacity: 0;transform: translateY(-10px);} to{opacity:1; transform: translateY(0px);}
+}
 </style>
 <body>
 <div class="server">
@@ -64,7 +70,7 @@ transition: 0.5s;
 <style>
 .hello_o{display: flex; justify-content: space-between;}
 </style>
-<h3 style="font-weight: 800; font-size: 30px;">TryZhy Winks</h3><h3 style="color:#3193e4 ; font-size: 18px;">Buscar</h3> </div>
+<h3 class="type_3" style="font-weight: 800; font-size: 30px;">TryZhy Winks</h3><h3 style="color:#3193e4 ; font-size: 18px;">Buscar</h3> </div>
 <div class="buts">
 <div class="sus" id="_servidores_o"><span id="blues">Servidores</span></div>
 <div class="sus" id="susu"><span id="blues_3">Susurros</span></div>
@@ -75,7 +81,7 @@ transition: 0.5s;
 <center>
 <img src="nay_cat.gif" width="60" height="60"><br>
 </center>
-<h3>Oops! Nao ha nem um susuro aqui</h3>
+<h3 class="fingh">Oops! Nao ha nem um sussuro aqui</h3>
 </div>
 
 <div class="botswinks_obots">
@@ -85,7 +91,7 @@ transition: 0.5s;
 <center>
 <img src="nay_cat.gif" width="60" height="60"><br>
 </center>
-<h3>Volte mais tarde!<br>Estamos atualizando o Winks Bot</h3>
+<h3 class="fingh">Volte mais tarde!<br>Estamos atualizando o Winks Bot</h3>
 </div>
 
 <div class="naycat">
