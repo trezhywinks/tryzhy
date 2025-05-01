@@ -183,6 +183,7 @@ document.querySelector('.removet').style.display = "none";
 </div>
 <div class="center">
 <div class="wine_winks">
+<style>.wine_winks{display:none;}</style>
 <div class="top_wine">
 <style>
 </style>
@@ -212,5 +213,14 @@ document.querySelector('.removet').style.display = "none";
 <script src="./sinf_main.js"></script>
 <script src="main_java_cat.js"></script>
 <script src="config_main.js"></script>
+<script>
+document.querySelector('.servers').addEventListener('click', () =>{
+const reng = document.querySelector('.recad_o');
+reng.style.display = "none";
+const rewinks = document.querySelector('.wine_winks');
+rewinks.style.display = "inline";
+
+})
+</script>
 </body>
 </html>
