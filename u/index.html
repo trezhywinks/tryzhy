@@ -42,7 +42,7 @@ overflow: hidden;
 
 .cont{ margin: 0 auto 10px;display: flex; width: 170vh; background: #121212; apdding: 10px; justify-contet: center;}
 .left{width: 470px; overflow:hidden; height: 100vh; background: #1d2328; padding: 10px;}
-.recad_o{margin-top: 30%; text-align: center; width: 100%;}
+/*.recad_o{margin-top: 30%; text-align: center; width: 100%;}*/
 .center{width: 80%; text-align: cetner;}
 .buts{padding: 10px; display: flex; justify-content: space-between;}
 .sus{ margin: 5px;text-align: center; transition: 0.5s;  width: 350px; padding: 6px; background: #121212;border-radius: 5px;}
@@ -75,6 +75,70 @@ transition: 0.5s; animation: --removet 4s ease-in;}
 from{transform: translateY(-250px);}
 to{transform: translateY(0px);}}
 .button{text-align: center; width: 100%; color:#3193e4; padding: 10px; border-radius: 5px; background: #121212; }
+
+
+section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+section .wave {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #4973ff;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
+}
+section .wave span {
+  content: "";
+  position: absolute;
+  width: 365vh;
+  height: 365vh;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -75%);
+  background: #000;
+}
+.content {
+  position: relative;
+  z-index: 1;
+  font-size: 17px;
+  letter-spacing: 1px;
+  color: #fff;
+}
+section .wave span:nth-child(1) {
+  border-radius: 45%;
+  background: rgba(20, 20, 20, 1);
+  animation: animate 5s linear infinite;
+}
+
+section .wave span:nth-child(2) {
+  border-radius: 40%;
+  background: rgba(20, 20, 20, 0.5);
+  animation: animate 10s linear infinite;
+}
+section .wave span:nth-child(3) {
+  border-radius: 42.5%;
+  background: rgba(20, 20, 20, 0.5);
+  animation: animate 15s linear infinite;
+}
+@keyframes animate {
+  0% {
+    transform: translate(-50%, -75%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -75%) rotate(360deg);
+  }
+}
+
+
 </style>
 <body>
 <div class="server">
@@ -195,14 +259,26 @@ document.querySelector('.removet').style.display = "none";
 <br><br>
 <div class="recado_wine">
 <style>
-.recado_wine{width: 450px; margin: 0 auto 10px; text-align: center;}
+recado_wine{width: 450px; margin: 0 auto 10px; text-align: center;}
 </style>
-<h4 style="opacity: 0.6;">Welcome<br>Ola usuario, seja bem vindo ao tryzhy winks</h4>
+<h5 style="opacity: 0.6;">Welcome<br>Ola usuario, seja bem vindo ao tryzhy winks</h5>
 </div>
 </div>
 <div class="recad_o">
+<!--img src="nay_cat.gif" width="120" height="120"><br-->
+<section>
+  <div class="wave">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="content">
+<center>
 <img src="nay_cat.gif" width="120" height="120"><br>
-<h2>Foi aqui que comecou sua historia no server.</h2>
+    <p>Welcome!<br> Foi aqui eu comecou sua jornada no server winks. </p>
+</center>  
+</div>
+</section>
 </div>
 </div>
 <div class="right">
