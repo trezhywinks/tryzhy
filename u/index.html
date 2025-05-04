@@ -20,29 +20,19 @@
   <title>TryZhy</title>
 </head>
 <style>
-*{
-margin: 0; padding:0; box-sizing:border-box;}
+*{margin: 0; padding:0; box-sizing:border-box;}
 
 :root {
  --sam: "SF Pro Text", "SF Pro Icons", system, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", "Ubuntu", "Cantarell", "Fira Sans", sans-serif;
  --color-whats: #a333e4;
 }
 
-.top_wine{ display: flex;
- justify-content: space-between; background: #121212;
- padding: 10px; border-bottom: 1px solid #1d2328; height: 8vh; width:100%;}
+.top_wine{ display: none; justify-content: space-between; background: #121212; padding: 10px; border-bottom: 1px solid #1d2328; height: 8vh; width:100%;}
 
-body, html{
-overflow: hidden;
- font-family: var(--sam);
- font-size: 17px;
- font-weight: 500;
- background: #000; color: #fff;
-}
-.colors{background-image: url('./aXhmCM.jpg');
-background-position: center center;
-background-size: cover; height: 100vh; width: 100%; background-reapet: no-reapet;
-}
+body, html{overflow: hidden; font-family: var(--sam); font-size: 17px; font-weight: 500; background: #000; color: #fff;}
+
+.colors{background-image: url('./aXhmCM.jpg');background-position: center center;background-size: cover; height: 100vh; width: 100%; background-reapet: no-reapet;}
+
 .server{display: flex;}
 .wine_winks{background: red;}
 .cont{ margin: 0 auto 10px;display: flex; width: 170vh; background: transparent; justify-contet: center;}
@@ -50,15 +40,9 @@ background-size: cover; height: 100vh; width: 100%; background-reapet: no-reapet
 .center{width: 80%; text-align: center;}
 .buts{padding: 10px; display: flex; justify-content: space-between;}
 .sus{ margin: 5px;text-align: center; transition: 0.5s;  width: 350px; padding: 6px; background: #121212;border-radius: 5px;}
-.sus:hover{
-margin-top: -4px;
-background: linear-gradient(#121212, #121212, #141414);
- transition: 0.5s}
-#blues_3, #blues_2{
-color: #fff;
-opacity: 0.6;
-transition: 0.5s;
-}
+
+.sus:hover{margin-top: -4px;background: linear-gradient(#121212, #121212, #141414); transition: 0.5s}
+#blues_3, #blues_2{color: #fff;opacity: 0.6;transition: 0.5s;}
 #blues{ color: #3193e4; transition: 0.5s;}
 
 .susu{display: none; text-align: center;  padding: 10px; margin-top: 10%; width: 100%;}
@@ -81,35 +65,12 @@ to{transform: translateY(0px);}}
 .button{text-align: center; width: 100%; color:#3193e4; padding: 10px; border-radius: 5px; background: #121212; }
 
 
-section {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-section .wave {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #4973ff;
-  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
-  transition: 0.5s;
-}
-section .wave span {
-  content: "";
-  position: absolute;
-  width: 365vh;
-  height: 365vh;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -75%);
-  background: #000;
-}
+section {  position: relative;  width: 100%;  height: 100vh;  overflow: hidden;  display: flex;  justify-content: center;  align-items: center;  min-height: 100vh;}
+
+section .wave {  position: absolute;  left: 0;  width: 100%;  height: 100%;  background: #4973ff;  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);  transition: 0.5s;}
+
+section .wave span {  content: "";  position: absolute;  width: 365vh;  height: 365vh;  top: 0;  left: 50%;  transform: translate(-50%, -75%);  background: #000;}
+
 .content {
   position: relative;
   z-index: 1;
@@ -142,14 +103,6 @@ section .wave span:nth-child(3) {
   }
 }
 
-
-/*body {
-  width: 100%;
-  height: 100vh;
-  background-color: #000;
-  background-image: radial-gradient(circle at top right, rgba(121, 68, 154, 0.13),       transparent),
-    radial-gradient(circle at 20% 80%, rgba(41, 196, 255, 0.13), transparent)
-}*/
 canvas {
   position: relative;
   width: 100%;
@@ -290,14 +243,19 @@ document.querySelector('.removet').style.display = "none";
 <div class="wine_winks">
 <div class="colors">
 <style> .wine_winks{display:none; background: red; width: 100%; height: 100vh; z-index: 6;}</style>
-<div class="top_wine">
-<div class="name_wine"><h2>Wine Winks</h2></div><div class="img_wine"><img src="https://trezhy.onrender.com/imagens/68110e02fb074f380ffb1e1d.png" style="width: 50; height: 50; border-radius: 100px;"></div>
+<div class="top_wine" hidden="hidden">
+<div class="img_wine"><img src="https://trezhy.onrender.com/imagens/68110e02fb074f380ffb1e1d.png" style="width: 50; height: 50; border-radius: 100px;"></div>
+<div class="name_wine"><h2>Wine Winks</h2></div>
 </div>
-<br><br>
-
 <div class="recado_wine">
 <center>
+<div class="toys_opa"><style>.toys_opa{display: flex; padding: 10px; text-align: left;justify-content: ;} .name_wine{margin: 15px; text-align: left;}</style>
+<div class="img_wine"><img src="https://trezhy.onrender.com/imagens/68110e02fb074f380ffb1e1d.png" style="width: 90; height: 90; border-radius: 10px;"></div>
+<div class="name_wine"><h2>Wine Winks</h2>
 <h4 style="opacity: 0.6;">Welcome<br>Ola usuario, seja bem vindo ao tryzhy winks</h4>
+</div>
+</div>
+<br><br>
 </center>
 <style>.serenha{width: 650px; margin: 10px;}
 .serenha_winks{display: flex; margin: 10px;}
@@ -318,8 +276,8 @@ document.querySelector('.removet').style.display = "none";
 <div class="intyk"><strong id="niv">Editar Poster</strong></div>
 <style>
 .selecter{ display: flex; margin: 0 auto 10px; padding: 10px;}
-#niv{font-size: 20px;}
-.intyk{color: red;padding: 7px;width: 340px;border-radius: 5px;background: #121212; margin: 10px;}</style>
+#niv{font-size: 20px; font-weight: 400;}
+.intyk{color: #3193e4;padding: 7px; border: 2px solid #1d2328; width: 340px;border-radius: 5px;background: #121212; margin: 10px;}</style>
 </div>
 </div>
     </div>
