@@ -48,7 +48,7 @@ flex-direction: column;
 .cont{ margin: 0 auto 10px;display: flex; width: 170vh; background: #121212; apdding: 10px; justify-contet: center;}
 .left{width: 470px; overflow:hidden; height: 100vh; background: #1d2328; padding: 10px;}
 /*.recad_o{margin-top: 30%; text-align: center; width: 100%;}*/
-.center{width: 80%; text-align: cetner;}
+.center{width: 80%; text-align: center;}
 .buts{padding: 10px; display: flex; justify-content: space-between;}
 .sus{ margin: 5px;text-align: center; transition: 0.5s;  width: 350px; padding: 6px; background: #121212;border-radius: 5px;}
 .sus:hover{
@@ -282,81 +282,44 @@ document.querySelector('.removet').style.display = "none";
 </div>
 </div>
 <!--/div-->
-<div class="center">
+<div class="center"><style>.center{background: transparent;}</style>
 <div class="wine_winks">
-<style>.wine_winks{display:none;}</style>
+<style> .wine_winks{display:none; background: red; width: 100%; background-size: 100%; background-reapet: not-reapet;}</style>
+
 <div class="top_wine">
-<style>
-</style>
-<div class="name_wine"><h2>Wine Winks</h2></div>
-<div class="img_wine">
-<img src="https://trezhy.onrender.com/imagens/68110e02fb074f380ffb1e1d.png" style="width: 50; height: 50; border-radius: 100px;">
-</div>
+<div class="name_wine"><h2>Wine Winks</h2></div><div class="img_wine"><img src="https://trezhy.onrender.com/imagens/68110e02fb074f380ffb1e1d.png" style="width: 50; height: 50; border-radius: 100px;"></div>
 </div>
 <br><br>
+
 <div class="recado_wine">
-<style>
-recado_wine{width: 450px; margin: 0 auto 10px; text-align: center;}
-</style>
 <center>
 <h4 style="opacity: 0.6;">Welcome<br>Ola usuario, seja bem vindo ao tryzhy winks</h4>
 </center>
-<style>
-
-    .container {
-      display: flex;
-      flex-direction: column;
-      flex: 1; /* Faz a área de conteúdo preencher o restante da tela */
-      overflow: auto;
-    }
-
-    .conteudo {
-      flex: 1;
-      padding: 20px;
-    }
-
-.serenha{
-width: 650px; margin: 10px;}
-.serenha_winks{
-
-display: flex; margin: 10px;}
+<style>.serenha{width: 650px; margin: 10px;}
+.serenha_winks{display: flex; margin: 10px;}
 .name_serenha{margin-top: 5px; margin-left: 10px;}
 </style>
-  <!--div class="container"-->
-    <!--div class="conteudo"-->
 <br><br>
 <div class="serenha">
+
 <div class="serenha_winks">
-<div class="serenha_img">
-<img src="https://trezhy.onrender.com/imagens/68110e02fb074f380ffb1e1d.png" style="width: 45; height: 45; border-radius: 100px;">
-</div>
+<div class="serenha_img"><img src="https://trezhy.onrender.com/imagens/68110e02fb074f380ffb1e1d.png" style="width: 45; height: 45; border-radius: 100px;"></div>
 <div class="name_serenha"><p style="font-size: 16px;">Wine Winks<br><span style="opacity: 0.5; font-size: 15px;">Programador</span></p></div>
 </div>
+
 <img src="./ebf3058849bd022783acf7619631726a.gif" width="640"/><br>
-<br>
-<strong>
-Ola usuario. Bem-vindo ao meu server, estou aqui para te ajudar.
-</strong>
+<br><strong>Ola usuario. Bem-vindo ao meu server, estou aqui para te ajudar.</strong>
 <div class="selecter">
 <div class="intyk"><strong id="niv">Editar Perfil</strong></div>
 <div class="intyk"><strong id="niv">Editar Poster</strong></div>
 <style>
 .selecter{ display: flex; margin: 0 auto 10px; padding: 10px;}
 #niv{font-size: 20px;}
-.intyk{
-color: red;
-padding: 7px;
-width: 340px;
-border-radius: 5px;
-background: #121212; margin: 10px;
-}
-</style>
+.intyk{color: red;padding: 7px;width: 340px;border-radius: 5px;background: #121212; margin: 10px;}</style>
 </div>
 </div>
     </div>
   </div>
-<!--/div>
-</div-->
 <div class="recad_o">
 <!--img src="nay_cat.gif" width="120" height="120"><br-->
 <!--section>
@@ -368,24 +331,6 @@ background: #121212; margin: 10px;
   <div class="content">
 </div>
 </section-->
-<div class="nayu">
-<style>
-.nayu{
-position: fixed; top: 30%; left: 0; right: 0; width: 100%;
-text-align: center; justify-content: center; z-index: 6;
-}
-@media(max-width: 999px){
-.center{
-display: none}
-.server{
-width: 100%}
-}
-</style>
-<!--img src="nay_cat.gif" width="120" height="120"><br>
-    <p>Welcome!<br> Foi aqui eu comecou sua jornada no server winks. </p>
--->
-
-</div>
 <canvas></canvas>
 </div>
 </div>
