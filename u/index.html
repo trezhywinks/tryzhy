@@ -37,9 +37,14 @@ overflow: hidden;
  font-family: var(--sam);
  font-size: 17px;
  font-weight: 500;
+flex-direction: column;
  background: #000; color: #fff;
 }
 
+.server{
+      display: flex;
+      flex-direction: column;
+}
 .cont{ margin: 0 auto 10px;display: flex; width: 170vh; background: #121212; apdding: 10px; justify-contet: center;}
 .left{width: 470px; overflow:hidden; height: 100vh; background: #1d2328; padding: 10px;}
 /*.recad_o{margin-top: 30%; text-align: center; width: 100%;}*/
@@ -269,17 +274,14 @@ document.querySelector('.removet').style.display = "none";
 </div>
 </div>
 <div class="you">
-<style>
+<!--style>
 .you{display: flex; padding: 10px; position:fixed; bottom: 0;}
 .myname{margin-top: 10%; margin-left: 10px;}
-</style>
-<div class="myfile"><img src="https://trezhy.onrender.com/imagens/68110e02fb074f380ffb1e1d.png" style="width: 60; height: 60; border-radius: 100px;"></div>
-<div class="myname"><h3>wine winks</h3>
-<p style="font-size: 14px; opacity: 0.6;">Hello World</p>
+</style-->
 </div>
 </div>
 </div>
-</div>
+<!--/div-->
 <div class="center">
 <div class="wine_winks">
 <style>.wine_winks{display:none;}</style>
@@ -296,7 +298,44 @@ document.querySelector('.removet').style.display = "none";
 <style>
 recado_wine{width: 450px; margin: 0 auto 10px; text-align: center;}
 </style>
-<h5 style="opacity: 0.6;">Welcome<br>Ola usuario, seja bem vindo ao tryzhy winks</h5>
+<center>
+<h4 style="opacity: 0.6;">Welcome<br>Ola usuario, seja bem vindo ao tryzhy winks</h4>
+</center>
+<style>
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      flex: 1; /* Faz a área de conteúdo preencher o restante da tela */
+      overflow: auto;
+    }
+
+    .conteudo {
+      flex: 1;
+      padding: 20px;
+    }
+
+.serenha_winks{
+
+display: flex; margin: 10px;}
+.name_serenha{margin-top: 5px; margin-left: 10px;}
+</style>
+  <div class="container">
+    <div class="conteudo">
+<br><br>
+<div class="serenha">
+<div class="serenha_winks">
+<div class="serenha_img">
+<img src="https://trezhy.onrender.com/imagens/68110e02fb074f380ffb1e1d.png" style="width: 45; height: 45; border-radius: 100px;">
+</div>
+<div class="name_serenha"><p style="font-size: 16px;">Wine Winks<br><span style="opacity: 0.5; font-size: 15px;">Programador(a)</span></p></div>
+</div>
+<img src="./ebf3058849bd022783acf7619631726a.gif" width="640"/><br>
+</div>
+
+    </div>
+  </div>
+</center>
 </div>
 </div>
 <div class="recad_o">
@@ -323,8 +362,10 @@ display: none}
 width: 100%}
 }
 </style>
-<img src="nay_cat.gif" width="120" height="120"><br>
+<!--img src="nay_cat.gif" width="120" height="120"><br>
     <p>Welcome!<br> Foi aqui eu comecou sua jornada no server winks. </p>
+-->
+
 </div>
 <canvas></canvas>
 </div>
