@@ -29,7 +29,7 @@ margin: 0; padding:0; box-sizing:border-box;}
 }
 
 .top_wine{ display: flex;
- justify-content: space-between;
+ justify-content: space-between; background: #121212;
  padding: 10px; border-bottom: 1px solid #1d2328; height: 8vh; width:100%;}
 
 body, html{
@@ -37,17 +37,16 @@ overflow: hidden;
  font-family: var(--sam);
  font-size: 17px;
  font-weight: 500;
-flex-direction: column;
  background: #000; color: #fff;
 }
-
-.server{
-      display: flex;
-      flex-direction: column;
+.colors{background-image: url('./aXhmCM.jpg');
+background-position: center center;
+background-size: cover; height: 100vh; width: 100%; background-reapet: no-reapet;
 }
-.cont{ margin: 0 auto 10px;display: flex; width: 170vh; background: #121212; apdding: 10px; justify-contet: center;}
+.server{display: flex;}
+.wine_winks{background: red;}
+.cont{ margin: 0 auto 10px;display: flex; width: 170vh; background: transparent; justify-contet: center;}
 .left{width: 470px; overflow:hidden; height: 100vh; background: #1d2328; padding: 10px;}
-/*.recad_o{margin-top: 30%; text-align: center; width: 100%;}*/
 .center{width: 80%; text-align: center;}
 .buts{padding: 10px; display: flex; justify-content: space-between;}
 .sus{ margin: 5px;text-align: center; transition: 0.5s;  width: 350px; padding: 6px; background: #121212;border-radius: 5px;}
@@ -155,6 +154,8 @@ canvas {
   position: relative;
   width: 100%;
   height: 100%; z-index: 1;
+  background-image: radial-gradient(circle at top right, rgba(121, 68, 154, 0.13),       transparent),
+    radial-gradient(circle at 20% 80%, rgba(41, 196, 255, 0.13), transparent)
 }
 
 a {
@@ -178,6 +179,9 @@ width: 100%}
 .server{ width: 100%}
 .left{width:100%;}
 }
+
+.wine_winks{
+background: red;}
 </style>
 <body>
 <div class="server">
@@ -284,8 +288,8 @@ document.querySelector('.removet').style.display = "none";
 <!--/div-->
 <div class="center"><style>.center{background: transparent;}</style>
 <div class="wine_winks">
-<style> .wine_winks{display:none; background: red; width: 100%; background-size: 100%; background-reapet: not-reapet;}</style>
-
+<div class="colors">
+<style> .wine_winks{display:none; background: red; width: 100%; height: 100vh; z-index: 6;}</style>
 <div class="top_wine">
 <div class="name_wine"><h2>Wine Winks</h2></div><div class="img_wine"><img src="https://trezhy.onrender.com/imagens/68110e02fb074f380ffb1e1d.png" style="width: 50; height: 50; border-radius: 100px;"></div>
 </div>
@@ -320,6 +324,7 @@ document.querySelector('.removet').style.display = "none";
 </div>
     </div>
   </div>
+</div>
 <div class="recad_o">
 <!--img src="nay_cat.gif" width="120" height="120"><br-->
 <!--section>
