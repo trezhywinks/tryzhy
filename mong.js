@@ -1,59 +1,36 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const axios = require('axios');
 const session = require('express-session');
 const path = require('path');
-const cors = require('cors');
-const multer = require('multer'); // Importar o multer para upload de arquivos
-
+const mongoose = require('mongoose');
 const app = express();
-const port = 3000;
+const PORT = 3000;
 
-// Configuração do multer para armazenamento de arquivos
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/'); // Defina o diretório onde as imagens serão armazenadas
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname)); // Nome único para cada arquivo
-    }
-});
-
-const upload = multer({ storage: storage });
-
-app.use(express.static('./login'));
-
-// Conectar ao MongoDB
-mongoose.connect("mongodb+srv://dreqx:w30MZuWHtXlSxAuU@cluster0.pkejh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
+mongoose.connect('mongodb://localhost:27017/seuBancoDeDados', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
 
-// Criar modelo de usuário
 const UserSchema = new mongoose.Schema({
     username: String,
     password: String,
-    email: String,
-    nome: String,  // Nome do usuário
-    foto: String,  // URL da foto de perfil
-    bio: String    // Biografia do usuário
+    name: String,
+    age: Number,
+    bio: String,
+    image: String
 });
 
-const User = mongoose.model("User", UserSchema);
+const User = mongoose.model('User', UserSchema);
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(cors());
-
-// Configurar sessões para manter login ativo
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(session({
-    secret: 'your-secret-key',
+    secret: 'seu-segredo',
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false }
+    saveUninitialized: true
 }));
 
-// Middleware para verificar se o usuário está logado antes de acessar .server
+// Middleware de autenticação
 function checkAuth(req, res, next) {
     if (req.session.userId) {
         return next();
@@ -63,46 +40,65 @@ function checkAuth(req, res, next) {
 
 // Servir páginas estáticas
 app.use('/login', express.static(path.join(__dirname, 'login')));
-
-// Usar o middleware de autenticação antes de servir a pasta .server
 app.use('/u', checkAuth, express.static(path.join(__dirname, 'u')));
 
 // Rota para redirecionar usuários autenticados para .server
-app.get('/u/', (req, res) => {
+app.get('/u', (req, res) => {
     if (req.session.userId) {
-        res.sendFile(path.join(__dirname, '.server/index.html'));
+        res.sendFile(path.join(__dirname, 'u/index.html'));
     } else {
         res.redirect('/login');
     }
 });
 
-// Rota para atualizar o perfil do usuário
-app.post("/update-profile", upload.single('foto'), async (req, res) => {
-    if (!req.session.userId) {
-        return res.status(401).json({ error: "Não autenticado" });
-    }
+app.get("/users", async (req, res) => {
 
-    const { nome, bio } = req.body;
-    const foto = req.file ? req.file.filename : null; // Se uma foto foi enviada, use o nome do arquivo
+    const users = await User.find();
 
+    res.json(users);
+
+});
+
+
+// Rota para login
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
     try {
-        const user = await User.findById(req.session.userId);
-        if (!user) {
-            return res.status(404).json({ error: "Usuário não encontrado" });
+        const user = await User.findOne({ username, password });
+        if (user) {
+            req.session.userId = user.username;
+            res.json({ success: true, redirect: "/u" });
+        } else {
+            res.json({ success: false, message: 'Usuário ou senha incorretos' });
         }
-
-        user.nome = nome || user.nome;
-        user.foto = foto ? `/uploads/${foto}` : user.foto; // Atualiza a foto, se presente
-        user.bio = bio || user.bio;
-
-        await user.save();
-        res.json({ success: true, message: "Perfil atualizado!" });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Erro ao buscar usuários' });
     }
 });
 
-// Iniciar o servidor
-app.listen(port, () => {
-    console.log(`Servidor rodando em http://localhost:${port}`);
+// Rota para carregar perfis de usuários
+app.get('/user/:username', async (req, res) => {
+    try {
+        const user = await User.findOne({ username: req.params.username });
+        if (user) {
+            res.send(`
+                <html>
+                    <head><title>Perfil de ${user.name}</title></head>
+                    <body>
+                        <h1>${user.name}</h1>
+                        <img src="${user.image}" alt="Foto de ${user.name}" width="150">
+                        <p>Bio: ${user.bio}</p>
+                    </body>
+                </html>
+            `);
+        } else {
+            res.status(404).send("Usuário não encontrado");
+        }
+    } catch (error) {
+        res.status(500).send("Erro ao buscar usuário");
+    }
+});
+
+app.listen(PORT, () => {
+    console.log(`Servidor rodando em http://localhost:${PORT}`);
 });

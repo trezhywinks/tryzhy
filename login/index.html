@@ -94,6 +94,7 @@ font-weight: 500;
     <div class="op" id="myfiles"></div>
     </div>
   </div>
+<form id="loginForm">
   <div class="pain">
 <div class="login">
 <div class="lab"><label id="nick">Nickname</label></div>
@@ -162,9 +163,36 @@ console.log("ta procurando oq cz?");
 <br><br>
 <div class="input">
 <style>button{width:100%; background: #2c974b; color: #fff; border:none; font-size: 17px;}</style>
-<button>Entrar</button>
+<button type="submit">Entrar</button>
 </div>
 </div>
+<script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('user').value;
+            const password = document.getElementById('pass').value;
+
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                alert('Login bem-sucedido');
+                // Redirecionar ou fazer outra ação
+            } else {
+                alert('Usuário ou senha incorretos');
+                document.getElementById('loginForm').reset();
+            }
+        });
+    </script>
+</script>
+</form>
 <div class="create">
   <input type="file" id="file" style="display: none;"/>
     <label for="file">

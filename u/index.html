@@ -199,6 +199,56 @@ background: red;}
         }
     </script>
 </div>
+<div class="buscaruser_0">
+    <input type="text" id="search" placeholder="Digite o nome do usuário">
+    <div id="result"></div>
+<script>
+function fetchUser(nome) {
+    fetch(`http://192.168.1.6:3000/user/${nome}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Usuário não encontrado"); // Força erro para ir ao .catch()
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (!data || Object.keys(data).length === 0) { // Se os dados forem vazios
+                showError();
+                return;
+            }
+
+            resultDiv.innerHTML = `
+                <div class="busct">
+                    <div class="imagembusct">
+                        <img src="${data.imagem}" class="auauaua"/>
+                    </div>
+                    <div class="imagembusct34">
+                        <strong style="font-size: 20px; font-weight: 600">${data.nome}</strong><br>
+                        <strong style="color: #4b4a4a; font-size: 19px; font-weight: 600;">${data.bio}</strong>
+                    </div>
+                </div>
+            `;
+            resultDiv.style.display = "block";
+            document.getElementById('buscv').style.display = "none";
+        })
+        .catch(() => {
+            showError(); // Chama função para mostrar a div de erro
+        });
+}
+
+// Função para mostrar a div de erro
+function showError() {
+    resultDiv.innerHTML = `
+        <div class="busct">
+            <div class="imagembusct34">
+                <strong style="font-size: 20px; font-weight: 600">Usuário não encontrado.</strong><br>
+            </div>
+        </div>`;
+    resultDiv.style.display = "block";
+}
+</script>
+</div>
+<!-- buscar -->
 <div class="settingsf">
 
 <div class="topsettings">
@@ -228,6 +278,11 @@ background: red;}
 <div class="tests">
 <h3 style="color:#3193e4 ; font-size: 18px;">Buscar</h3>
 </div>
+<script>
+document.querySelector('.tests').addEventListener('click', () = > {
+
+})
+</script>
 </div>
 </div>
 <div class="buts">
@@ -298,6 +353,13 @@ document.querySelector('.removet').style.display = "none";
 </div>
 <!--/div-->
 <div class="center"><style>.center{background: transparent;}</style>
+<div class="mesah">
+<div class="message-container">
+
+</div>
+<input type="text">
+</div>
+<!-- message_container  --->
 <div class="wine_winks">
 <div class="colors">
 <style> .wine_winks{display:none; background: red; width: 100%; height: 100vh; z-index: 6;}</style>
