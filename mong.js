@@ -1,4 +1,7 @@
 const express = require('express');
+const multer = require('multer');
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 const axios = require('axios');
 const session = require('express-session');
 const path = require('path');
@@ -6,18 +9,21 @@ const mongoose = require('mongoose');
 const app = express();
 const PORT = 3000;
 
-mongoose.connect('mongodb://localhost:27017/seuBancoDeDados', {
+
+mongoose.connect('mongodb+srv://dreqxyxl:5jvkLqtTRsDcgvY1@winewinks.ajyhewm.mongodb.net/?retryWrites=true&w=majority&appName=winewinks', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
 
 const UserSchema = new mongoose.Schema({
     username: String,
+    email: String,
     password: String,
     name: String,
     age: Number,
     bio: String,
-    image: String
+    image: String,
+    category: String
 });
 
 const User = mongoose.model('User', UserSchema);
@@ -98,6 +104,33 @@ app.get('/user/:username', async (req, res) => {
         res.status(500).send("Erro ao buscar usuário");
     }
 });
+
+app.post('/register', upload.single('image'), async (req, res) => {
+    try {
+        const { username, password, email, category } = req.body;
+
+        if (!req.file) return res.status(400).json({ error: 'Imagem obrigatória' });
+
+        const imageBase64 = req.file.buffer.toString('base64');
+
+        const newUser = new User({
+            username,
+            password,
+            email,
+            category,
+            image: imageBase64
+        });
+
+        await newUser.save();
+        req.session.userId = newUser._id;
+
+        res.json({ success: true, redirect: "/u" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: err.message });
+    }
+});
+
 
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);

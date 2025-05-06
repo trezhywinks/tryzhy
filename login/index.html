@@ -194,7 +194,8 @@ console.log("ta procurando oq cz?");
 </script>
 </form>
 <div class="create">
-  <input type="file" id="file" style="display: none;"/>
+<form id="registerForm" enctype="multipart/form-data">
+  <input type="file" name="image" id="file" style="display: none;"/>
     <label for="file">
   <div class="input" style="text-align: center;">
     <span style="margin: 10px; color: #3193e4;">Selecione uma foto</span>
@@ -220,7 +221,7 @@ console.log("ta procurando oq cz?");
   </style>
   <div class="lab"><label id="nick">Nickname</label></div>
   <div class="input">
-   <input type="text" name="user" id="nicks">
+   <input type="text" name="username" id="nicks">
    <label for="emoji">
      <input type="file" style="display: none;" id="emoji">
    <div style="margin: 2px; margin-left: -50px;"><img src="./IMG_0869.png" width="40"></div>
@@ -246,7 +247,7 @@ console.log("ta procurando oq cz?");
   </div>
   <div class="lab"><label id="nick">Sua senha</label></div>
     <div class="input">
-    <input type="password" name="user" id="pass">
+    <input type="password" name="password" id="pass">
   </div>
     <script>
     document.getElementById('file').addEventListener('change', function(event) {
@@ -273,7 +274,7 @@ const int = document.getElementById('nicks').value; if (int) {
   </script>
   <div class="lab" id="cate"><label for="dop" id="nick">Categoria</label>
   <div class="select">
-    <select name="" id="dop" class="">
+    <select name="" id="dop" name="category" class="" required>
     <option value="">Hacker</option>
     <option value="">Desenvolvedor</option>
     <option value="">Estelionatario</option>
@@ -286,9 +287,34 @@ const int = document.getElementById('nicks').value; if (int) {
   </div>
   <div class="input">
 <style>.button{width:100%; background: #3193e4; color: #fff; border:none; font-size: 17px;}</style>
-<button class="button">Criar conta</button>
+<button class="button" type="submit">Criar conta</button>
+<script>
+document.getElementById('registerForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    try {
+        const response = await fetch('/register', {
+            method: 'POST',
+            body: formData
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            window.location.href = result.redirect;
+        } else {
+            document.getElementById('response').innerText = result.error || 'Erro ao registrar.';
+        }
+    } catch (err) {
+        document.getElementById('response').innerText = 'Erro de conexão.';
+    }
+});
+</script>
 </div>
 </div>
+</form>
+<div id="response"></div>
 </div>
 <div class="signup">
 <style>
