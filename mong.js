@@ -107,7 +107,7 @@ app.get('/user/:username', async (req, res) => {
 
 app.post('/register', upload.single('image'), async (req, res) => {
     try {
-        const { username, password, email, category } = req.body;
+        const { username, password, category } = req.body;
 
         if (!req.file) return res.status(400).json({ error: 'Imagem obrigatória' });
 
@@ -116,7 +116,7 @@ app.post('/register', upload.single('image'), async (req, res) => {
         const newUser = new User({
             username,
             password,
-            email,
+//            email,
             category,
             image: imageBase64
         });

@@ -99,7 +99,7 @@ font-weight: 500;
 <div class="login">
 <div class="lab"><label id="nick">Nickname</label></div>
 <div class="input" id="lip">
-<input type="text" id="user" name="user"/>
+<input type="text" id="user" name="username"/>
 </div>
 <br>
 <div class="lab">
@@ -112,7 +112,7 @@ font-weight: 500;
 </div>
 <div class="input" id="ok_o">
 <div class="screen">
-<input type="password" name="pass" id="pass"/>
+<input type="password" name="password" id="pass"/>
 <script>
 const ok_o = document.getElementById('pass');
 const lo_o = document.getElementById('lo_o');
@@ -166,7 +166,6 @@ console.log("ta procurando oq cz?");
 <button type="submit">Entrar</button>
 </div>
 </div>
-<script>
     <script>
         document.getElementById('loginForm').addEventListener('submit', async function(event) {
             event.preventDefault();
@@ -184,14 +183,13 @@ console.log("ta procurando oq cz?");
 
             if (data.success) {
                 alert('Login bem-sucedido');
-                // Redirecionar ou fazer outra ação
+                window.location.href = data.redirect; 
             } else {
                 alert('Usuário ou senha incorretos');
                 document.getElementById('loginForm').reset();
             }
         });
     </script>
-</script>
 </form>
 <div class="create">
 <form id="registerForm" enctype="multipart/form-data">
@@ -274,7 +272,7 @@ const int = document.getElementById('nicks').value; if (int) {
   </script>
   <div class="lab" id="cate"><label for="dop" id="nick">Categoria</label>
   <div class="select">
-    <select name="" id="dop" name="category" class="" required>
+    <select id="dop" name="category" required>
     <option value="">Hacker</option>
     <option value="">Desenvolvedor</option>
     <option value="">Estelionatario</option>
