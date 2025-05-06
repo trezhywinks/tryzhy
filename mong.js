@@ -89,9 +89,9 @@ app.get('/user/:username', async (req, res) => {
         if (user) {
             res.send(`
                 <html>
-                    <head><title>Perfil de ${user.name}</title></head>
+                    <head><title>Perfil de ${user.username}</title></head>
                     <body>
-                        <h1>${user.name}</h1>
+                        <h1>${user.username}</h1>
                         <img src="${user.image}" alt="Foto de ${user.name}" width="150">
                         <p>Bio: ${user.bio}</p>
                     </body>

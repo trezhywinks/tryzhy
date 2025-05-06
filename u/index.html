@@ -136,6 +136,12 @@ width: 100%}
 .wine_winks{
 background: red;}
 .edit_server{display: none;}
+.flesuserta{display: flex; width: 100%; background: #111111; padding: 10px;}
+.ggd{width: 50%; text-align: left;}
+.ggdw{width: 100%;}
+.musx{background: #000000; border-radius: 10px; width: 100%; overflow: hidden;}
+.youtuber{display: flex;}
+.namemuzis{margin: 10px;}
 </style>
 <body>
 <div class="server">
@@ -143,16 +149,61 @@ background: red;}
 <div class="cont">
 <div class="left">
 <div class="edit_server">
-<img id="fotoPreview" src="./images/output.gif" alt="Foto de Perfil" width="100">
-    
-    <input type="file" id="foto" accept="image/*" onchange="previewFoto()">
-    <br>
-    <input type="text" id="nome" placeholder="Seu nome">
-    <input type="text" id="bio" placeholder="Sua bio">
-    <button onclick="salvarPerfil()">Salvar</button>
+<center>
+<div class="flesuserta">
+<div class="ggd">
+<label for="foto">
+<img id="fotoPreview" src="https://trezhy.onrender.com/imagens/68110e02fb074f380ffb1e1d.png" alt="Foto de Perfil" width="100" height="100" style="border-radius: 5px; border:2px solid #141414;">  
+</label> 
+</div>
+<div class="ggdw">
+<span id="sererty">nickname</span>
+<div class="musx">
+<div class="youtuber">
+<div class="fileyout">
+<img id="fotoPreview" src="https://trezhy.onrender.com/imagens/68110e02fb074f380ffb1e1d.png" alt="music" width="60" height="60">
+</div>
+<div class="namemuzis">
+<h4>Sad and Sober</h4>
+<p style="opacity: 0.6; font-size: 14px; font-weight: 600;">My music select</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 
+<input type="file" id="foto" hidden="hidden" accept="image/*" onchange="previewFoto()">
+<br>
+</center>
+    <br>
+<style>
+#sererty{ font-weight: 600; opacity: 0.5;}
+#nome, #bio{
+background: #121212;
+font-size: 17px;
+font-weight: 600;
+padding: 10px;
+border-radius: 10px;
+color: #fff;
+border: none;
+margin-top: 5px;
+outline: none;
+}
+.saveb{background: #3193e4; margin: 10px; padding: 10px; color: #fff;font-size: 17px; border: none; font-weight: 600; border-radius: 10px; width: 100%}
+</style>
+    <input type="text" id="nome" placeholder="Seu nome">
+    <input type="text" id="bio" placeholder="Sua bio"><br>
+    <button class="saveb" onclick="salvarPerfil()">Salvar</button>
+<script>
+document.getElementById('nome').addEventListener('input', function(event) {
+const nomenick = document.getElementById('nome').value;
+const spannome = document.getElementById('sererty');
+if (nomenick) {
+spannome.innerText = nomenick;
+}
+});
+</script>
     <script>
-        // Função para mostrar a foto selecionada
         function previewFoto() {
             const fotoInput = document.getElementById("foto");
             const fotoPreview = document.getElementById("fotoPreview");
@@ -168,7 +219,6 @@ background: red;}
             }
         }
 
-        // Função para salvar as informações do perfil
         async function salvarPerfil() {
             const nome = document.getElementById("nome").value;
             const bio = document.getElementById("bio").value;
@@ -200,6 +250,9 @@ background: red;}
     </script>
 </div>
 <div class="buscaruser_0">
+<style>
+.buscaruser_0{display: none;}
+</style>
     <input type="text" id="search" placeholder="Digite o nome do usuário">
     <div id="result"></div>
 <script>
