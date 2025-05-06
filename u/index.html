@@ -204,7 +204,7 @@ background: red;}
     <div id="result"></div>
 <script>
 function fetchUser(nome) {
-    fetch(`http://192.168.1.6:3000/user/${nome}`)
+    fetch(`http://localhost:3000/user/${nome}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error("Usuário não encontrado"); // Força erro para ir ao .catch()
@@ -263,6 +263,12 @@ function showError() {
 <div class="namepain"><h3>Wine Winks</h3><p style="opacity: 0.6; font-size: 15px;">Hello World</p></div>
 </div>
 <div class="button34"><h5>Editar meu perfil</h5></div>
+<script>
+document.querySelector('.button34').addEventListener('click', () => {
+document.querySelector('.edit_server').style.display = "inline";
+document.querySelector('.settingsf').style.display = "none";
+})
+</script>
 </div>
 <div class="removet">
 <div class="hello_o">
@@ -278,11 +284,6 @@ function showError() {
 <div class="tests">
 <h3 style="color:#3193e4 ; font-size: 18px;">Buscar</h3>
 </div>
-<script>
-document.querySelector('.tests').addEventListener('click', () = > {
-
-})
-</script>
 </div>
 </div>
 <div class="buts">
