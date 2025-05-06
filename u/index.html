@@ -149,6 +149,17 @@ background: red;}
 <div class="cont">
 <div class="left">
 <div class="edit_server">
+<div class="pronted">
+<style>
+.pronted{
+display: flex;
+justify-content: space-between;
+}
+</style>
+<div class="back_volatr"><h4 class="backiuyi_main" style="color: #3193e4;">Cancelar</h4></div>
+<div class="pront_save"><h4 style="color: #3193e4;">Pronto</h4></div>
+</div>
+<br>
 <center>
 <div class="flesuserta">
 <div class="ggd">
@@ -322,7 +333,13 @@ function showError() {
 document.querySelector('.button34').addEventListener('click', () => {
 document.querySelector('.edit_server').style.display = "inline";
 document.querySelector('.settingsf').style.display = "none";
+});
+
+document.querySelector('.backiuyi_main').addEventListener('click', () => {
+document.querySelector('.edit_server').style.display = "none";
+document.querySelector('.settingsf').style.display = "inline";
 })
+
 </script>
 </div>
 <div class="removet">
