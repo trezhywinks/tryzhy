@@ -200,7 +200,7 @@ border: none;
 margin-top: 5px;
 outline: none;
 }
-.saveb{background: #3193e4; margin: 10px; padding: 10px; color: #fff;font-size: 17px; border: none; font-weight: 600; border-radius: 10px; width: 100%}
+.saveb{background: #3193e4; margin-top: 5px; padding: 10px; color: #fff;font-size: 17px; border: none; font-weight: 600; border-radius: 10px; width: 100%}
 </style>
     <input type="text" id="nome" placeholder="Seu nome">
 <p style="font-size: 13px; margin-left: 10px; margin-top: 5px; opacity: 0.6; font-weight: 600;">Digite seu nome e adicione uma foto de perfil.</p>
@@ -326,7 +326,11 @@ function showError() {
 <div class="myfilepain">
 <img src="https://trezhy.onrender.com/imagens/681ac031c1975c16753b18bf.png" style="width: 70; height: 70; border-radius: 5px; border: 4px solid #121212;">
 </div>
-<div class="namepain"><h3>Wine Winks</h3><p style="opacity: 0.6; font-size: 15px;">Hello World</p></div>
+<div class="namepain"><h3 class="muiname">Nickname</h3><p style="opacity: 0.6; font-size: 15px;">Hello World</p></div>
+<script>
+//const muiname = localStorage.getItem('data')
+//document.querySelector('.muiname').innerText = muiname;
+</script>
 </div>
 <div class="button34"><h5>Editar meu perfil</h5></div>
 <script>
@@ -428,9 +432,8 @@ document.querySelector('.removet').style.display = "none";
 <div class="center"><style>.center{background: transparent;}</style>
 <div class="mesah">
 <div class="message-container">
-
 </div>
-<input type="text">
+ <!--input type="text"-->
 </div>
 <!-- message_container  --->
 <div class="wine_winks">
@@ -500,5 +503,12 @@ document.querySelector('.removet').style.display = "none";
 <script src="config_main.js"></script>
 <script src="./winks.js"></script>
 <script src="back.js"></script>
+
+<script>
+const dado = localStorage.getItem('data')
+document.getElementById('sererty').innerText = dado;
+document.querySelector('.muiname').innerText = dado;
+</script>
+
 </body>
 </html>

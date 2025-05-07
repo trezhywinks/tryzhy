@@ -36,7 +36,6 @@ app.use(session({
     saveUninitialized: true
 }));
 
-// Middleware de autenticação
 function checkAuth(req, res, next) {
     if (req.session.userId) {
         return next();
@@ -44,11 +43,10 @@ function checkAuth(req, res, next) {
     res.redirect('/login');
 }
 
-// Servir páginas estáticas
+app.use(express.static('login'))
 app.use('/login', express.static(path.join(__dirname, 'login')));
 app.use('/u', checkAuth, express.static(path.join(__dirname, 'u')));
 
-// Rota para redirecionar usuários autenticados para .server
 app.get('/u', (req, res) => {
     if (req.session.userId) {
         res.sendFile(path.join(__dirname, 'u/index.html'));
@@ -66,7 +64,6 @@ app.get("/users", async (req, res) => {
 });
 
 
-// Rota para login
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
     try {

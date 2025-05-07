@@ -14,7 +14,7 @@
 
   <meta property="og:title" content="TryZhy">
   <meta property="og:description" content="TryZhy é uma experiência interativa para curiosos.">
-  <meta property="og:image" content="https://nano.com/naycat.jpg">
+  <meta property="og:image" content="https://trezhy.onrender.com/imagens/681ac031c1975c16753b18bf.png">
   <meta property="og:url" content="https://nano.com">
   <meta property="og:type" content="website">
 
@@ -182,13 +182,22 @@ console.log("ta procurando oq cz?");
             const data = await response.json();
 
             if (data.success) {
-                alert('Login bem-sucedido');
-                window.location.href = data.redirect; 
+                //alert('Login bem-sucedido');
+ saveuser();                
+window.location.href = data.redirect; 
+                 
             } else {
                 alert('Usuário ou senha incorretos');
                 document.getElementById('loginForm').reset();
             }
         });
+function saveuser() { 
+const vinf = document.getElementById('user').value
+localStorage.setItem('data', vinf)
+alert(`welcome ${vinf}`)
+}
+
+
     </script>
 </form>
 <div class="create">
