@@ -350,10 +350,20 @@ document.querySelector('.settingsf').style.display = "inline";
 })
 
 </script>
+<br>
+<div class="colored"><h3 style="color:#3193e4;">Color</h3>
+<div id="purpleclick">
+<span>Darck Purple</span>
+</div><br>
+<span>Darck Orange</span><br>
+<span>Darck Red</span><br>
+<span>Darck Green</span><br>
+</div>
 </div>
 <div class="removet">
 <div class="hello_o">
 <style>
+.colored{background: #121212; padding: 10px; border-radius: 15px; text-align: left;}
 .hello_o{display: flex; justify-content: space-between;}
 @media(max-width: 999px){
 #blues, #blues_3, #blues_2 {
@@ -561,6 +571,18 @@ text-align: left;}</style>
 const dado = localStorage.getItem('data')
 document.getElementById('sererty').innerText = dado;
 document.querySelector('.muiname').innerText = dado;
+</script>
+<script>
+  document.getElementById('purpleclick').addEventListener('click', () => {
+    const todosElementos = document.querySelectorAll('*');
+
+    todosElementos.forEach(el => {
+      const estilo = getComputedStyle(el);
+      if (estilo.color === 'rgb(49, 147, 228)') { // vermelho puro
+        el.style.color = '#a333e4'; // muda para azul
+      }
+    });
+  });
 </script>
 
 </body>
