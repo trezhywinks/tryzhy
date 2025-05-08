@@ -1,4 +1,5 @@
 const express = require('express');
+const qrcode = require('qrcode-terminal');
 const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
@@ -8,6 +9,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const app = express();
 const PORT = 3000;
+const host_server = `http://192.168.1.5:${PORT}`;
 
 
 mongoose.connect('mongodb+srv://dreqxyxl:5jvkLqtTRsDcgvY1@winewinks.ajyhewm.mongodb.net/?retryWrites=true&w=majority&appName=winewinks', {
@@ -130,5 +132,8 @@ app.post('/register', upload.single('image'), async (req, res) => {
 
 
 app.listen(PORT, () => {
+qrcode.generate(host_server, {small: true}, function(qrcode) {
+console.log(qrcode);
+})
     console.log(`Servidor rodando em http://localhost:${PORT}`);
 });

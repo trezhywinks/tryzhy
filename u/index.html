@@ -27,6 +27,7 @@
  --color-whats: #a333e4;
 }
 
+
 .top_wine{ display: none; justify-content: space-between; background: #121212; padding: 10px; border-bottom: 1px solid #1d2328; height: 8vh; width:100%;}
 
 body, html{overflow: hidden; font-family: var(--sam); font-size: 17px; font-weight: 500; background: #000; color: #fff;}
@@ -133,6 +134,10 @@ width: 100%}
 .left{width:100%;}
 }
 
+@media(max-width: 999px){
+.center{
+display:none;}
+}
 .wine_winks{
 background: red;}
 .edit_server{display: none;}
@@ -350,6 +355,10 @@ document.querySelector('.settingsf').style.display = "inline";
 <div class="hello_o">
 <style>
 .hello_o{display: flex; justify-content: space-between;}
+@media(max-width: 999px){
+#blues, #blues_3, #blues_2 {
+font-size: 13px;
+}}
 </style>
 
 <h3 class="type_3" style="font-weight: 800; font-size: 30px;">TryZhy Winks</h3>
@@ -405,7 +414,7 @@ document.querySelector('.removet').style.display = "none";
 <h3 class="fingh">Volte mais tarde!<br>Estamos atualizando o Winks Bot</h3>
 </div>
 
-<div class="naycat">
+<div class="naycat"  id="wevent">
 <div class="servers">
 <style> 
 .servers{ background: #121212; border-radius: 5px; padding: 10px; display: flex; margin: 0 auto 10px;}
@@ -420,6 +429,30 @@ document.querySelector('.removet').style.display = "none";
 </div>
 </div>
 </div>
+<script>
+  function isMobile() {
+    return window.matchMedia("(max-width: 999px)").matches;
+  }
+
+  const agua = document.getElementById("wevent");
+
+  if (isMobile()) {
+    agua.addEventListener("click", () => {
+document.querySelector('.center').style.display = "inline";
+document.querySelector('.left').style.display = "none";
+//      alert("Você clicou na div em um dispositivo mobile!");
+    });
+  }
+
+  // Opcional: se quiser que funcione mesmo ao redimensionar depois:
+  window.addEventListener('resize', () => {
+    if (isMobile()) {
+    //  agua.onclick = () => alert("Você clicou na div em um dispositivo mobile!");
+    } else {
+      agua.onclick = null;
+    }
+  });
+</script>
 <div class="you">
 <!--style>
 .you{display: flex; padding: 10px; position:fixed; bottom: 0;}
@@ -429,7 +462,15 @@ document.querySelector('.removet').style.display = "none";
 </div>
 </div>
 <!--/div-->
-<div class="center"><style>.center{background: transparent;}</style>
+<div class="center"><style>.center{background: transparent;}
+@media(max-width: 999px){
+.center{
+width: 100%;}
+.colors{width: 100%;}
+.{width:100%;}
+}
+
+</style>
 <div class="mesah">
 <div class="message-container">
 </div>
@@ -441,31 +482,43 @@ document.querySelector('.removet').style.display = "none";
 <style> .wine_winks{display:none; background: red; width: 100%; height: 100vh; z-index: 6;}</style>
 <div class="top_wine" hidden="hidden">
 <div class="img_wine"><img src="https://trezhy.onrender.com/imagens/681ac031c1975c16753b18bf.png" style="width: 50; height: 50; border-radius: 100px;"></div>
-<div class="name_wine"><h2>Wine Winks</h2></div>
+<div class="name_wine"><h2>WineWinks</h2></div>
 </div>
 <div class="recado_wine">
 <center>
-<div class="toys_opa"><style>.toys_opa{display: flex; padding: 10px; text-align: left;justify-content: ;} .name_wine{margin: 15px; text-align: left;}</style>
-<div class="img_wine"><img src="https://trezhy.onrender.com/imagens/681ac031c1975c16753b18bf.png" style="width: 90; height: 90; border-radius: 10px;"></div>
+<div class="toys_opa"><style>.toys_opa{ width: 100%;display: flex; padding: 10px; text-align: left;justify-content: ;}
+ .name_wine{margin: 15px; 
+  white-space: nowrap;      
+  overflow: hidden;       
+width: 80%;
+  text-overflow: ellipsis; 
+text-align: left;}</style>
+<div class="img_wine"><img src="https://trezhy.onrender.com/imagens/681ac031c1975c16753b18bf.png" style="width: 90; height: 90; border-radius: 10px;" class="imgwer"></div>
 <div class="name_wine"><h2>Wine Winks</h2>
-<h4 style="opacity: 0.6;">Welcome<br>Ola usuario, seja bem vindo ao tryzhy winks</h4>
+<h4 style="opacity: 0.6;" class="opah4">Welcome<br>Ola usuario, seja bem vindo ao tryzhy winks</h4>
 </div>
 </div>
 <br><br>
 </center>
 <style>.serenha{width: 650px; margin: 10px;}
+@media(max-width: 999px){
+.serenha{ width: 95%;}
+.qwer{width: 100%;}
+.opah4{font-size: 14px;}
+.niv{font-size: 15px;}
+}
 .serenha_winks{display: flex; margin: 10px;}
-.name_serenha{margin-top: 5px; margin-left: 10px;}
+.name_serenha{margin-top: 5px; text-align:left; margin-left: 10px;}
 </style>
 <br><br>
 <div class="serenha">
 
 <div class="serenha_winks">
 <div class="serenha_img"><img src="https://trezhy.onrender.com/imagens/681ac031c1975c16753b18bf.png" style="width: 45; height: 45; border-radius: 100px;"></div>
-<div class="name_serenha"><p style="font-size: 16px;">Wine Winks<br><span style="opacity: 0.5; font-size: 15px;">Programador</span></p></div>
+<div class="name_serenha"><p style="font-size: 16px;">WineWinks<br><p style="opacity: 0.5; font-size: 15px;">Programador</p></p></div>
 </div>
 
-<img src="./ebf3058849bd022783acf7619631726a.gif" width="640"/><br>
+<img src="./ebf3058849bd022783acf7619631726a.gif" width="640" class="qwer"/><br>
 <br><strong>Ola usuario. Bem-vindo ao meu server, estou aqui para te ajudar.</strong>
 <div class="selecter">
 <div class="intyk"><strong id="niv">Editar Perfil</strong></div>

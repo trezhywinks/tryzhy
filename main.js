@@ -27,6 +27,7 @@ qrcode.generate(host, {small: true }, function (qrcode) {
 console.log(qrcode)
 })
 
+
 console.log("GET".bold.yellow,"http://localhost:9595".bold.green)
 console.log("GET".bold.yellow,"http://localhost:9595/admin".bold.red)
 console.log("GET".bold.yellow,"http://localhost:9595/".bold.green + "u".bold.magenta)
