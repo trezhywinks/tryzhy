@@ -105,9 +105,10 @@ input {
 .welcome{
     text-align: center;
     display: flex;
-    justify-content: space-between;
-    width: 90%;
-    margin: 0 auto 10px;
+    padding: 10px;
+    justify-content:left;
+    width: 100%;
+    margin: 10px auto 10px;
 }
 .namewinks{
     text-align: left;
