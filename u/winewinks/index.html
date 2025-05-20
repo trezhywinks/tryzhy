@@ -28,7 +28,13 @@
       <script>
       function iframE() {
         console.log("ok")
-        document.querySelector('.iframe').style.display = "inline";
+       const ifg = document.querySelector('.iframe')
+      if (ifg.style.display = "none"){
+ifg.style.display = "inline";
+
+} else if (ifg.style.display = "inline"){
+ifg.style.display = "none";
+}
       }
     </script>
   <div class="centermessage">

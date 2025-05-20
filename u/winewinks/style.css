@@ -151,7 +151,7 @@ input {
     left: 60%; 
     right:0;
     animation: --iframe 0.7s ease-out;
-    z-index: 7;
+    z-index: 1;
     display: none;
 }
 iframe{
@@ -192,7 +192,7 @@ transform: translateX(0);
     text-align: left;
     padding-bottom: 40px;
     background:linear-gradient(#42445A1C, black);
-    margin-top: 48%;
+    margin-top: 52%;
     backdrop-filter: blur(3px);
 }
 
