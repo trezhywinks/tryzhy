@@ -485,7 +485,19 @@ width: 100%;}
 .{width:100%;}
 }
 
+.iframe_message{
+width: 100%;
+height: 100vh;
+display: none;
+}
+
+iframe{
+width: 100%; height: 100vh;
+}
 </style>
+<div class="iframe_message">
+  <iframe class="" src="./winewinks/index.html" frameborder="0"></iframe>
+</div>
 <div class="mesah">
 <div class="message-container">
 </div>
@@ -511,6 +523,17 @@ text-align: left;}</style>
 <div class="img_wine"><img src="https://trezhy.onrender.com/imagens/681ac031c1975c16753b18bf.png" style="width: 90; height: 90; border-radius: 10px;" class="imgwer"></div>
 <div class="name_wine"><h2>Wine Winks</h2>
 <h4 style="opacity: 0.6;" class="opah4">Welcome<br>Ola usuario, seja bem vindo ao tryzhy winks</h4>
+<div class="message_winks_div">
+<span>Mesagem</span>
+</div>
+<script>
+document.querySelector('.message_winks_div').addEventListener('click', () => {
+document.querySelector('.iframe_message').style.display = "inline";
+document.querySelector('.wine_winks').style.display = "none";
+
+})
+</script>
+
 </div>
 </div>
 <br><br>
