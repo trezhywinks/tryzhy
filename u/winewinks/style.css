@@ -82,7 +82,7 @@ input {
     z-index: 4;
 }
 
-.foder{
+.foder-you{
     background: #000000DB;
     backdrop-filter: blur(2px);
     height: 100vh;
@@ -90,7 +90,7 @@ input {
 }
 
 .centermessage{
-    background-image:url('./img/IMG_1413.jpeg');
+    background-image:url('./aXhmCM.jpg');
     height: 100vh;
     background-position: center center;
     background-size: cover;

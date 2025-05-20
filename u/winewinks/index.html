@@ -26,16 +26,18 @@
   <iframe class="" src="./iframe.html" frameborder="0"></iframe>  
   </div>
       <script>
-      function iframE() {
-        console.log("ok")
-       const ifg = document.querySelector('.iframe')
-      if (ifg.style.display = "none"){
-ifg.style.display = "inline";
+function iframE() {
+    console.log("ok");
+    const ifg = document.querySelector('.iframe');
+    
+    // Verifica o valor atual de display usando o estilo inline diretamente
+    if (ifg.style.display === "none" || getComputedStyle(ifg).display === "none") {
+        ifg.style.display = "inline";
+    } else {
+        ifg.style.display = "none";
+    }
+}    
 
-} else if (ifg.style.display = "inline"){
-ifg.style.display = "none";
-}
-      }
     </script>
   <div class="centermessage">
     <div class="foder">
