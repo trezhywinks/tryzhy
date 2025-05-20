@@ -10,7 +10,7 @@ type.innerText = "Winks Bot";
 type.style.transition = "0.5s";
 wetr.style.color = "white"; wetr.style.opacity = "0.6";
 blues.style.color = "white"; blues.style.opacity = "0.6";
-blues_2.style.color = "#3193e4"; blues_2.style.opacity = "1";
+blues_2.style.color = "#fff"; blues_2.style.opacity = "1";
 
 });
 
@@ -25,7 +25,7 @@ const type_2 = document.querySelector('.type_3');
 type_2.innerText = "Susurros";
 blues_22.style.color = "white"; blues.style.opacity = "0.6";
 blues2.style.color = "white"; blues.style.opacity = "0.6";
-blues_3.style.color = "#3193e4"; blues_3.style.opacity = "1";
+blues_3.style.color = "#fff"; blues_3.style.opacity = "1";
 
 });
 
@@ -41,7 +41,7 @@ const type_3 = document.querySelector('.type_3');
 type_3.innerText = "TryZhy Winks";
 type_3.style.transition = "0.5s";
 suio.style.color = "white"; suio.style.opacity = "0.6";
-bluess.style.color = "#3193e4"; blues.style.opacity = "1";
+bluess.style.color = "#fff"; blues.style.opacity = "1";
 bluess_2.style.color = "white"; blues_2.style.opacity = "0.6";
 
 });
