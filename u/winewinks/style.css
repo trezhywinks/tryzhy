@@ -116,9 +116,11 @@ input {
 }
 
 .botsd{
-    width: 90%;
+    width: 100%;
+padding: 10px;
     justify-content: center;
-    margin: 0 auto 10px;
+ text-align: center;   
+ display: flex;
 }
 .share{
     width: 100%;
@@ -127,9 +129,14 @@ input {
 .view{
     padding: 10px;
     background: #121212;
-    color: green;
-    width: 100%;
-    font-size: 14px;
+    display: flex;
+justify-content: space-between;
+    color: white;
+    width: 380px;
+font-weight: 600;
+fon-family: var(--sam);
+    font-size: 17px;
+margin: 5px;
     border-radius: 5px;
     border: 1px solid #CACACA0A;
 }
