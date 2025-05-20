@@ -90,7 +90,7 @@ input {
 }
 
 .centermessage{
-    background-image:url('./aXhmCM.jpg');
+    background-image:url('https://raw.githubusercontent.com/trezhywinks/background-website/refs/heads/main/png/aXhmCM.jpg');
     height: 100vh;
     background-position: center center;
     background-size: cover;
