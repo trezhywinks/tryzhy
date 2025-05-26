@@ -37,7 +37,6 @@ function iframE() {
     console.log("ok");
     const ifg = document.querySelector('.iframe');
     
-    // Verifica o valor atual de display usando o estilo inline diretamente
     if (ifg.style.display === "none" || getComputedStyle(ifg).display === "none") {
         ifg.style.display = "inline";
     } else {
@@ -119,6 +118,14 @@ Visualizar perfil
       </div>
       
     </div>
+<style>
+#comment-section{
+padding: 10px;
+width: 450px;
+padding-bottom: 10%;
+}
+</style>
+<div id="comment-section"></div>
     </div>
   </div>
   
@@ -129,14 +136,147 @@ Visualizar perfil
       </h2>
     </div>
     <div class="inputmeng">
-      <input type="text" name="" id="messageinput">
+      <input type="text" name="" id="comment-input" >
     </div>
-    <div class="sendmessage">
+    <div class="sendmessage" id="submit-comment">
       <span>
         <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" style="fill: #fff;"><path d="M20.56 3.34a1 1 0 0 0-1-.08l-17 8a1 1 0 0 0-.57.92 1 1 0 0 0 .6.9L8 15.45v6.72L13.84 18l4.76 2.08a.93.93 0 0 0 .4.09 1 1 0 0 0 .52-.15 1 1 0 0 0 .48-.79l1-15a1 1 0 0 0-.44-.89zM18.1 17.68l-5.27-2.31L16 9.17l-7.65 4.25-2.93-1.29 13.47-6.34z"/></svg>
       </span>
     </div>
   </div>
   <script src="main.js"></script>
+<script>
+let currentUser = null;
+const dado = localStorage.getItem('data')
+async function carregarUsuario(dado) {
+  try {
+    const response = await fetch(`http://localhost:3000/k/${dado}`);
+    if (!response.ok) throw new Error('Usuário não encontrado');
+
+    const data = await response.json();
+    currentUser = {
+      nome: data.username,
+      foto: data.image.startsWith('data:image') ? data.image : `data:image/png;base64,${data.image}`
+    };
+  } catch (error) {
+    console.error('Erro ao carregar dados do usuário:', error);
+    alert('Erro ao carregar usuário. Comentários desativados.');
+    document.getElementById('comment-input').disabled = true;
+    document.getElementById('submit-comment').disabled = true;
+  }
+}
+
+//function criarComentarioHTML({ nome, foto, mensagem }) {
+  //const div = document.createElement('div');
+  //div.className = 'comentario';
+
+//  div.innerHTML = `
+  //  <img src="${foto}" alt="Foto de ${nome}" class="foto-usuario" width="50" height="50" style="border-radius: 100%;"  />
+    //<div class="conteudo">
+      //<strong>${nome}</strong>
+      //<strong>${mensagem}</strong>
+   // </div>
+ // `;
+
+  //return div;
+//}
+
+function criarComentarioHTML({ nome, foto, mensagem }) {
+  const div = document.createElement('div');
+  div.className = 'comentario';
+
+  const img = document.createElement('img');
+  img.src = foto;
+  img.alt = `Foto de ${nome}`;
+  img.className = 'foto-usuario';
+
+  const conteudoDiv = document.createElement('div');
+  conteudoDiv.className = 'conteudo';
+
+  const nomeEl = document.createElement('strong');
+  nomeEl.textContent = nome;
+
+  const msgEl = document.createElement('p');
+  msgEl.textContent = mensagem; 
+
+  conteudoDiv.appendChild(nomeEl);
+  conteudoDiv.appendChild(msgEl);
+
+  div.appendChild(img);
+  div.appendChild(conteudoDiv);
+
+  return div;
+}
+
+
+
+function salvarComentarioLocal(comentario) {
+  const comentarios = JSON.parse(localStorage.getItem('comentarios')) || [];
+  comentarios.push(comentario);
+  localStorage.setItem('comentarios', JSON.stringify(comentarios));
+}
+
+function carregarComentarios() {
+  const comentarios = JSON.parse(localStorage.getItem('comentarios')) || [];
+  comentarios.forEach(c => {
+    const div = criarComentarioHTML(c);
+    document.getElementById('comment-section').appendChild(div);
+  });
+}
+
+function adicionarComentario(mensagem) {
+  if (!mensagem.trim() || !currentUser) return;
+
+  const comentario = {
+    nome: currentUser.nome,
+    foto: currentUser.foto,
+    mensagem: mensagem.trim()
+  };
+
+  const div = criarComentarioHTML(comentario);
+  document.getElementById('comment-section').appendChild(div);
+  salvarComentarioLocal(comentario);
+  document.getElementById('comment-input').value = '';
+
+  const section = document.querySelector('comentario');
+  section.scrollTop = section.scrollHeight;
+}
+
+
+
+//function ff(ff) {
+  //if (!mensagem.trim() || !currentUser) return;
+
+//  const comentario = {
+  //  nome: currentUser.nome,
+   // foto: currentUser.foto,
+    //mensagem: mensagem.trim()
+ // };
+
+ // const div = criarComentarioHTML(comentario);
+ // document.getElementById('comment-section').appendChild(div);
+ // salvarComentarioLocal(comentario);
+ // document.getElementById('comment-input').value = '';
+//}
+
+// Event listeners
+document.getElementById('submit-comment').addEventListener('click', () => {
+  const msg = document.getElementById('comment-input').value;
+  adicionarComentario(msg);
+});
+
+document.getElementById('comment-input').addEventListener('keypress', e => {
+  if (e.key === 'Enter') {
+    const msg = document.getElementById('comment-input').value;
+    adicionarComentario(msg);
+  }
+});
+
+window.addEventListener('DOMContentLoaded', async () => {
+  await carregarUsuario(dado); 
+  carregarComentarios();
+});
+
+</script>
 </body>
 </html>

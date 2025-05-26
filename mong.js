@@ -81,6 +81,28 @@ app.post('/login', async (req, res) => {
     }
 });
 
+// Rota JSON: retorna os dados do usuário em JSON
+app.get('/k/:username', async (req, res) => {
+    try {
+        const user = await User.findOne({ username: req.params.username });
+
+        if (user) {
+            res.json({
+                username: user.username,
+                name: user.name,
+                image: user.image,
+                bio: user.bio,
+                id: user._id
+            });
+        } else {
+            res.status(404).json({ error: 'Usuário não encontrado' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao buscar usuário' });
+    }
+});
+
+
 // Rota para carregar perfis de usuários
 app.get('/user/:username', async (req, res) => {
     try {
