@@ -359,11 +359,13 @@ document.querySelector('.settingsf').style.display = "inline";
 <br>
 <div class="colored"><h3 style="color:#3193e4;">Color</h3>
 <div id="purpleclick">
-<span>Darck Purple</span>
+<span>Darck purple</span>
+<p style="font-size: 14px; opacity: 0.4;">Clique para mudar a cor para purple</p>
 </div><br>
-<span>Darck Orange</span><br>
-<span>Darck Red</span><br>
-<span>Darck Green</span><br>
+<div id="redclick">
+<span>Darck red</span>
+<p style="font-size: 14px; opacity: 0.4;">Clique para mudar a cor para red</p><br>
+</div>
 </div>
 </div>
 <div class="removet">
@@ -631,16 +633,33 @@ document.getElementById('sererty').innerText = dado;
 document.querySelector('.muiname').innerText = dado;
 </script>
 <script>
-  document.getElementById('purpleclick').addEventListener('click', () => {
-    const todosElementos = document.querySelectorAll('*');
+document.getElementById('purpleclick').addEventListener('click', () => {
+  const todosElementos = document.querySelectorAll('*');
 
-    todosElementos.forEach(el => {
-      const estilo = getComputedStyle(el);
-      if (estilo.color === 'rgb(49, 147, 228)') { // vermelho puro
-        el.style.color = '#a333e4'; // muda para azul
-      }
-    });
+  todosElementos.forEach(el => {
+    const estilo = getComputedStyle(el);
+    const cor = estilo.color;
+
+    if (cor === 'rgb(255, 0, 0)' || cor === 'rgb(49, 147, 228)') {
+      el.style.color = '#a333e4'; 
+    }
   });
+});
+
+
+document.getElementById('redclick').addEventListener('click', () => {
+  const todosElementos = document.querySelectorAll('*');
+
+  todosElementos.forEach(el => {
+    const estilo = getComputedStyle(el);
+    const cor = estilo.color;
+
+    if (cor === 'rgb(49, 147, 228)' || cor === 'rgb(163, 51, 228)') {
+      el.style.color = 'red'; 
+    }
+  });
+});
+
 </script>
 
 </body>
