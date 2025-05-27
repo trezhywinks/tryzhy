@@ -297,5 +297,6 @@ transform: translateX(0);
 }
 .foder {
   max-height: 100vh;
-  overflow-y: auto;  /* ativa a rolagem vertical */
+  overflow-y: auto;
+  overflow-x: hidden;
 }

@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>WineWinks</title>
   <link rel="stylesheet" href="style.css">
-   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+  <link rel="stylesheet" href="animete.css">  
+ <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 </head>
 <body>
   <div class="topmessage">
@@ -132,10 +133,6 @@ padding-bottom: 10%;
   margin-bottom: 5px;
 }
 
-.comentario{
-padding: 10px;
-width: 450px;
-}
 
 .data-comentario {
   font-size: 0.8em;
@@ -152,6 +149,20 @@ width: 450px;
 .comentario p {
   white-space: pre-wrap;
   word-break: break-word;
+}
+
+.comentario {
+padding: 10px;
+width: 450px;
+}
+
+@media(max-width: 999px){
+.comentario{
+width: 95%;
+}
+#comment-section{
+width: 95%;
+}
 }
 
 </style>
@@ -328,7 +339,6 @@ window.addEventListener('DOMContentLoaded', async () => {
   await carregarUsuario(dado); 
   carregarComentarios();
 });
-
 </script>
 </body>
 </html>
