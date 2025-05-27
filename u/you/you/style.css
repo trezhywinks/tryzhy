@@ -1,0 +1,302 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+ --sam: "SF Pro Text", "SF Pro Icons", system, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", "Ubuntu", "Cantarell", "Fira Sans", sans-serif;
+ --color-whats: #a333e4;
+}
+
+body {
+    font-size: 15pt;
+    background: #121212;
+    color: #fff;
+    width: 100%;
+    font-family: var(--sam);
+    margin: 0 auto 10px;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.foto-usuario{
+width: 60px;
+height: 60px;
+border-radius: 100%;
+}
+
+#phor{
+    border-radius: 100px;
+}
+
+input {
+    background: transparent;
+    outline: none;
+    border: 2px solid #29292829;
+    font-family: var(--sam);
+    font-size: 20px;
+    border-radius: 50px;
+    color: whitesmoke;
+    width: 100%;
+    padding: 5px;
+    transition: 0.5s;
+}
+
+.masdin{
+    margin: 3px;
+    margin-top: -4px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.sendmessage{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.inputmeng{
+    width: 100%;
+}
+
+.inputmessage{
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    right: 0;
+    background: #1B1B1EAB;
+    border-top: 1px solid #CACACA0A;
+    backdrop-filter: blur(10px);
+    z-index: 4;
+}
+
+.topmessage{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    height: 8vh;
+    display: flex;
+    justify-content: space-between;
+    background: #1B1B1EAB;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #CACACA0A;
+    z-index: 4;
+}
+
+.foder-you{
+    background: #000000DB;
+    backdrop-filter: blur(2px);
+    height: 100vh;
+    z-index: 2;
+}
+
+.centermessage{
+    background-image:url('https://raw.githubusercontent.com/trezhywinks/background-website/refs/heads/main/png/aXhmCM.jpg');
+    height: 100vh;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+}
+
+.nameuser{
+    text-align: center;
+}
+
+.welcome{
+    text-align: center;
+    display: flex;
+    padding: 10px;
+    justify-content:left;
+    width: 100%;
+    margin: 10px auto 10px;
+}
+.namewinks{
+    text-align: left;
+    margin: 10px;
+}
+
+.botsd{
+    width: 100%;
+padding: 10px;
+    justify-content: center;
+ text-align: center;   
+ display: flex;
+}
+
+@media(max-width:999px){
+.botsd{
+display: inline;
+justify-content: center;
+margin: 0 auto 10px;
+}
+}
+
+.share{
+    width: 100%;
+}
+
+.view{
+    padding: 10px;
+    background: #121212;
+    display: flex;
+justify-content: space-between;
+    color: white;
+    width: 380px;
+font-weight: 600;
+fon-family: var(--sam);
+    font-size: 17px;
+margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #CACACA0A;
+}
+
+@media(max-width:999px){
+.view{
+margin: 0 auto 10px;
+}
+}
+
+.perfil{
+    display: none;
+}
+
+.svg{
+    margin-top: 2px;
+    margin-left: 5px;
+}
+
+.dixed{
+    display: flex;
+}
+.iframe{
+    height:100vh;
+    position: fixed;
+    left: 60%; 
+    right:0;
+    animation: --iframe 0.7s ease-out;
+    z-index: 1;
+    display: none;
+}
+iframe{
+    width: 100%;
+    height: 100vh;
+}
+
+@media(max-width:999px){
+.iframe{
+left: 0;
+right: 0;
+}
+}
+    
+@keyframes --iframe{
+    from{
+transform: translateX(350px);
+    }
+    to{
+transform: translateX(0);
+    }
+}
+
+.finji{
+    text-align: center;
+}
+
+.userimage{
+    background-image: url('./img/IMG_1392.jpeg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: left;
+    height: 40vh;
+    width: 100%;
+    text-align: bottom;
+    overflow: hidden;
+    align-items: bottom;
+}
+
+.username{
+    position: bottom;
+    align-items: bottom;
+    padding: 10px;
+    text-align: left;
+    padding-bottom: 40px;
+    background:linear-gradient(#42445A1C, black);
+    margin-top: 52%;
+    backdrop-filter: blur(3px);
+}
+
+.xzin{
+    background: #00000085;
+    border-radius: 100px;
+    margin: 10px;
+}
+
+.devillike{
+    display: flex;
+    justify-content: space-between;
+}
+
+.telme{
+    margin: 10px;
+}
+
+.callmehead{
+    display: flex;
+    justify-content: space-around;
+}
+
+.mynamecall{
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    background: #00000085;
+     color: #fff;
+     fill: #fff;
+     fill-opacity: 0.6;
+     width: 114px;
+}
+
+.phay{
+    display: flex;
+    background:#00000085;
+    overflow: hidden;
+    border-radius: 5px;
+    padding: 10px;
+    width: 97%;
+    margin: 10px auto 10px;
+    justify-content: space-around;
+}
+
+.moutf{
+    margin: 0;
+    height: 9vh;
+}
+
+.namephay{
+    text-align:left;
+    margin-left: 10px;
+    width: 100%;
+}
+
+.what{
+    width: 100%;
+    border: 1px solid #CACACA0A;
+    border-radius: 5px;
+    background: #3193e4;
+    padding: 8px;
+    color: #fff;
+    margin-top: 5px;
+    font-size: 15px;
+}
+.foder {
+  max-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
