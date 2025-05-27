@@ -345,15 +345,14 @@ width: 95%;
   <div class="inputmessage">
     <div class="masdin">
       <h2 style="font-size: 40px; font-weight: 100;">
-      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: #fff;"><path d="m21.781 13.875-2-2.5A1 1 0 0 0 19 11h-6V9h6c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2H5a1 1 0 0 0-.781.375l-2 2.5a1.001>
-      </h2>
+<box-icon name='bong' type='solid' color='#fffbfb' style="width: 34px; height: 34px;" ></box-icon> </h2>
     </div>
     <div class="inputmeng">
       <input type="text" name="" id="comment-input" >
     </div>
     <div class="sendmessage" id="submit-comment">
       <span> 
-     <img src="http://localhost:3000/svg/enter">
+<box-icon name='send' type='solid' color='#ffffff' style="width: 34px; height: 34px;" ></box-icon>
       </span>
     </div>
   </div>
