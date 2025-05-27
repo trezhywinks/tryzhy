@@ -461,6 +461,56 @@ margin-left: 5px;
 </div>
 </div>
 </div>
+<div class="naycat"  id="migmig">
+<div class="servers">
+<style>
+.servers{ background: #121212; border-radius: 5px; padding: 10px; display: flex; margin: 0 auto 10px;}
+.myser{margin-left: 10px;}
+.svg{
+margin-top: 2px;
+margin-left: 5px;
+}
+</style>
+<div class="agua">
+<img src="" class="migimage" style="width: 50; height: 50; border-radius: 100px;">
+</div>
+<div class="myser">
+      <div class="dixed">
+      <div class="firl">
+    <span style="font-weight: 500; font-size: 23px;" class="migname">WineWinks</span>
+      </div>
+</div>
+
+<p style="opacity: 0.6; font-size: 14px;">Welcome to my server</p>
+</div>
+</div>
+<script>
+let currentUser = null;
+const dadoY = localStorage.getItem('data')
+async function carregarUsuario(dado) {
+  try {
+    const response = await fetch(`http://localhost:3000/k/${dadoY}`);
+    if (!response.ok) throw new Error('Usuário não encontrado');
+
+    const data = await response.json();
+    currentUser = {
+      nome: data.username,
+      foto: data.image.startsWith('data:image') ? data.image : `data:image/png;base64,${data.image}`
+    };
+     const migmig = document.querySelector('.migimage');
+    const migname = document.querySelector('.migname');
+     migmig.src = foto;
+migname.innerText = nome;
+  } catch (error) {
+    console.error('Erro ao carregar dados do usuário:', error);
+    alert('Erro ao carregar usuário. Comentários desativados.');
+  }
+}
+
+</script>
+</div>
+
+
 <script>
   function isMobile() {
     return window.matchMedia("(max-width: 999px)").matches;
