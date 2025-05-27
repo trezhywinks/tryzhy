@@ -438,7 +438,32 @@ document.querySelector('.removet').style.display = "none";
 </div>
 
 <div class="naycat"  id="wevent">
-<div class="servers">
+
+<div class="naycat"  id="migmig">
+<div class="servers" id="youmigmig">
+<style>
+.servers{ background: #121212; border-radius: 5px; padding: 10px; display: flex; margin: 0 auto 10px;}
+.myser{margin-left: 10px;}
+.svg{
+margin-top: 2px;
+margin-left: 5px;
+}
+</style>
+<div class="agua">
+<img src="" class="migimage" style="width: 50; height: 50; border-radius: 100px;">
+</div>
+<div class="myser">
+      <div class="dixed">
+      <div class="firl">
+    <span style="font-weight: 500; font-size: 17px;" class="migname"></span>
+      </div>
+</div>
+
+<p style="opacity: 0.6; font-size: 14px;">Minha gaveta</p>
+</div>
+</div>
+</div>
+<div class="servers" id="mikwinks">
 <style> 
 .servers{ background: #121212; border-radius: 5px; padding: 10px; display: flex; margin: 0 auto 10px;}
 .myser{margin-left: 10px;}
@@ -459,31 +484,10 @@ margin-left: 5px;
 
 <p style="opacity: 0.6; font-size: 14px;">Welcome to my server</p>
 </div>
-</div>
-</div>
-<div class="naycat"  id="migmig">
-<div class="servers">
-<style>
-.servers{ background: #121212; border-radius: 5px; padding: 10px; display: flex; margin: 0 auto 10px;}
-.myser{margin-left: 10px;}
-.svg{
-margin-top: 2px;
-margin-left: 5px;
-}
-</style>
-<div class="agua">
-<img src="" class="migimage" style="width: 50; height: 50; border-radius: 100px;">
-</div>
-<div class="myser">
-      <div class="dixed">
-      <div class="firl">
-    <span style="font-weight: 500; font-size: 17px;" class="migname"></span>
-      </div>
+
 </div>
 
-<p style="opacity: 0.6; font-size: 14px;">Welcome to my server</p>
-</div>
-</div>
+
 <script>
 let currentUser = null;
 const dadoY = localStorage.getItem('data');
@@ -521,7 +525,7 @@ carregarUsuario(dadoY);
     return window.matchMedia("(max-width: 999px)").matches;
   }
 
-  const agua = document.getElementById("wevent");
+  const agua = document.getElementById("mikwinks");
 
   if (isMobile()) {
     agua.addEventListener("click", () => {
@@ -531,7 +535,6 @@ document.querySelector('.left').style.display = "none";
     });
   }
 
-  // Opcional: se quiser que funcione mesmo ao redimensionar depois:
   window.addEventListener('resize', () => {
     if (isMobile()) {
     //  agua.onclick = () => alert("Você clicou na div em um dispositivo mobile!");
@@ -563,6 +566,12 @@ height: 100vh;
 display: none;
 }
 
+.iframe_youmigmig{
+width: 100%;  
+height: 100vh;
+display: none;
+}
+
 iframe{
 width: 100%; height: 100vh;
 }
@@ -570,6 +579,11 @@ width: 100%; height: 100vh;
 <div class="iframe_message">
   <iframe class="" src="./winewinks/index.html" frameborder="0"></iframe>
 </div>
+
+<div class="iframe_youmigmig">
+<iframe src="" class="if_migmig" frameborder="0"></iframe>
+</div>
+
 <div class="mesah">
 <div class="message-container">
 </div>
@@ -687,6 +701,8 @@ document.querySelector('.wine_winks').style.display = "none";
 
 <script>
 const dado = localStorage.getItem('data')
+const if_migmig = document.querySelector('.if_migmig');
+if_migmig.src = `http://localhost:3000/winks/${dado}`;
 document.getElementById('sererty').innerText = dado;
 document.querySelector('.muiname').innerText = dado;
 </script>

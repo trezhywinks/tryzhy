@@ -186,7 +186,7 @@ app.get('/winks/:username', async (req, res) => {
   <div class="topmessage">
     <div class="nottonu">
       <span>
-<img src="./img/bxs-chevron-left.svg" width="40" style="color: #fff;"/>
+<box-icon name='chevron-left' type='solid' color='#ffffff' style="width: 40px; height: 40px;" ></box-icon>
       </span>
     </div>
     <div class="nameuser">
@@ -352,7 +352,7 @@ width: 95%;
     </div>
     <div class="sendmessage" id="submit-comment">
       <span> 
-<box-icon name='send' type='solid' color='#ffffff' style="width: 34px; height: 34px;" ></box-icon>
+<box-icon name='telegram' type='logo' color='#ffffff' style="width: 34px; height: 34px;"  ></box-icon>
       </span>
     </div>
   </div>
