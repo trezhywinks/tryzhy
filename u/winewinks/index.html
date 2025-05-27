@@ -124,6 +124,24 @@ padding: 10px;
 width: 450px;
 padding-bottom: 10%;
 }
+
+.comentario{
+padding: 10px;
+width: 450px;
+}
+
+.usuario-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.comentario p {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
 </style>
 <div id="comment-section"></div>
     </div>
@@ -182,30 +200,41 @@ async function carregarUsuario(dado) {
 //}
 
 function criarComentarioHTML({ nome, foto, mensagem }) {
-  const div = document.createElement('div');
-  div.className = 'comentario';
+  const divComentario = document.createElement('div');
+  divComentario.className = 'comentario';
+
+  // Cria o container do usuário (imagem + nome)
+  const divUsuario = document.createElement('div');
+  divUsuario.className = 'usuario-info';
+  divUsuario.style.display = 'flex';
+  divUsuario.style.alignItems = 'center';
+  divUsuario.style.gap = '10px';
 
   const img = document.createElement('img');
   img.src = foto;
   img.alt = `Foto de ${nome}`;
   img.className = 'foto-usuario';
 
-  const conteudoDiv = document.createElement('div');
-  conteudoDiv.className = 'conteudo';
-
   const nomeEl = document.createElement('strong');
   nomeEl.textContent = nome;
 
-  const msgEl = document.createElement('p');
-  msgEl.textContent = mensagem; 
+  divUsuario.appendChild(img);
+  divUsuario.appendChild(nomeEl);
 
-  conteudoDiv.appendChild(nomeEl);
+  // Cria o container da mensagem
+  const conteudoDiv = document.createElement('div');
+  conteudoDiv.className = 'conteudo';
+
+  const msgEl = document.createElement('p');
+  msgEl.textContent = mensagem;
+
   conteudoDiv.appendChild(msgEl);
 
-  div.appendChild(img);
-  div.appendChild(conteudoDiv);
+  // Junta tudo
+  divComentario.appendChild(divUsuario);
+  divComentario.appendChild(conteudoDiv);
 
-  return div;
+  return divComentario;
 }
 
 
