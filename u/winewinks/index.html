@@ -125,9 +125,21 @@ width: 450px;
 padding-bottom: 10%;
 }
 
+.usuario-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
 .comentario{
 padding: 10px;
 width: 450px;
+}
+
+.data-comentario {
+  font-size: 0.8em;
+  color: #666;
 }
 
 .usuario-info {
@@ -199,29 +211,34 @@ async function carregarUsuario(dado) {
   //return div;
 //}
 
-function criarComentarioHTML({ nome, foto, mensagem }) {
+function criarComentarioHTML({ nome, foto, mensagem, data }) {
   const divComentario = document.createElement('div');
   divComentario.className = 'comentario';
 
-  // Cria o container do usuário (imagem + nome)
   const divUsuario = document.createElement('div');
   divUsuario.className = 'usuario-info';
-  divUsuario.style.display = 'flex';
-  divUsuario.style.alignItems = 'center';
-  divUsuario.style.gap = '10px';
 
   const img = document.createElement('img');
   img.src = foto;
   img.alt = `Foto de ${nome}`;
   img.className = 'foto-usuario';
 
+  const textoUsuario = document.createElement('div');
+  textoUsuario.className = 'info-texto';
+
   const nomeEl = document.createElement('strong');
   nomeEl.textContent = nome;
 
-  divUsuario.appendChild(img);
-  divUsuario.appendChild(nomeEl);
+  const dataEl = document.createElement('p');
+  dataEl.textContent = data;
+  dataEl.className = 'data-comentario';
 
-  // Cria o container da mensagem
+  textoUsuario.appendChild(nomeEl);
+  textoUsuario.appendChild(dataEl);
+
+  divUsuario.appendChild(img);
+  divUsuario.appendChild(textoUsuario);
+
   const conteudoDiv = document.createElement('div');
   conteudoDiv.className = 'conteudo';
 
@@ -230,7 +247,6 @@ function criarComentarioHTML({ nome, foto, mensagem }) {
 
   conteudoDiv.appendChild(msgEl);
 
-  // Junta tudo
   divComentario.appendChild(divUsuario);
   divComentario.appendChild(conteudoDiv);
 
@@ -256,10 +272,17 @@ function carregarComentarios() {
 function adicionarComentario(mensagem) {
   if (!mensagem.trim() || !currentUser) return;
 
+  const agora = new Date();
+  const dataFormatada = agora.toLocaleString('pt-BR', {
+    day: '2-digit', month: '2-digit', year: 'numeric',
+    hour: '2-digit', minute: '2-digit'
+  });
+
   const comentario = {
     nome: currentUser.nome,
     foto: currentUser.foto,
-    mensagem: mensagem.trim()
+    mensagem: mensagem.trim(),
+    data: dataFormatada
   };
 
   const div = criarComentarioHTML(comentario);
@@ -267,7 +290,7 @@ function adicionarComentario(mensagem) {
   salvarComentarioLocal(comentario);
   document.getElementById('comment-input').value = '';
 
-  const section = document.querySelector('comentario');
+  const section = document.getElementById('comment-section');
   section.scrollTop = section.scrollHeight;
 }
 
