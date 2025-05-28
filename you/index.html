@@ -71,6 +71,10 @@ function iframE() {
     <div class="botsd">
 <div class="ioniconv">
 <style>
+
+*{
+margin: 0; padding: 0;
+}
 .ioniconv{
 margin-top: 20px;
 }
@@ -79,6 +83,15 @@ text-align: left;
 }
 .uio{
 margin-top: 5px;
+}
+
+.usuario-info{
+padding: 10px;
+display: block;
+}
+
+.info-texto{
+display: flex;
 }
 </style>
 </div>      
@@ -221,12 +234,20 @@ const path = window.location.pathname;
       const msg = input.value.trim();
       if (!msg) return;
 
+ const agora = new Date();
+  const dataFormatada = agora.toLocaleString('pt-BR', {
+    day: '2-digit', month: '2-digit', year: 'numeric',
+    hour: '2-digit', minute: '2-digit'
+  });
+
+
       const data = {
         from: currentUser,
         to: otherUser,
         message: msg,
-        time: new Date().toISOString()
-      };
+        time: new Date().toISOString(),
+        data: dataFormatada
+ };
 
       socket.send(JSON.stringify(data));
       mostrarMensagem(data, true);
@@ -255,7 +276,9 @@ async function mostrarMensagem(data, souEu) {
       if (!res.ok) throw new Error("Usuário não encontrado");
 
       const userData = await res.json();
-      usuario = {
+
+   
+   usuario = {
         nome: userData.username,
         foto: userData.image.startsWith("data:image")
           ? userData.image
@@ -276,19 +299,37 @@ async function mostrarMensagem(data, souEu) {
     img.src = usuario.foto;
     img.alt = `Foto de ${usuario.nome}`;
 
-    const spanNome = document.createElement("span");
+  const dataEl = document.createElement('p');
+  dataEl.textContent = data.data;
+  dataEl.className = 'data-comentario';
+
+
+
+    const spanNome = document.createElement("strong");
     spanNome.className = "nome-usuario";
     spanNome.textContent = usuario.nome;
 
-    usuarioInfo.appendChild(img);
+  const textoUsuario = document.createElement('div');
+  textoUsuario.className = 'info-texto';
+
+//  textoUsuario.appendChild(usuarioInfo);
+  //textoUsuario.appendChild(dataEl);
+
+
+//    usuarioInfo.appendChild(img);
     usuarioInfo.appendChild(spanNome);
+    usuarioInfo.appendChild(dataEl); 
 
     // Texto da mensagem
     const textoMensagem = document.createElement("div");
     textoMensagem.className = "texto-mensagem";
     textoMensagem.textContent = data.message;
+    textoUsuario.appendChild(img);
+   textoUsuario.appendChild(usuarioInfo);
 
-    div.appendChild(usuarioInfo);
+    div.appendChild(textoUsuario);
+   // div.appendChild(usuarioInfo);
+    div.appendChild(textoUsuario);
     div.appendChild(textoMensagem);
 
     chatBox.appendChild(div);
