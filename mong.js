@@ -1,4 +1,6 @@
 const express = require('express');
+const cheerio = require('cheerio'); 
+const cors = require('cors');
 const qrcode = require('qrcode-terminal');
 const multer = require('multer');
 const storage = multer.memoryStorage();
@@ -10,6 +12,7 @@ const mongoose = require('mongoose');
 const app = express();
 const PORT = 3000;
 const host_server = `http://192.168.1.5:${PORT}`;
+app.use(cors());
 
 
 mongoose.connect('mongodb+srv://dreqxyxl:5jvkLqtTRsDcgvY1@winewinks.ajyhewm.mongodb.net/?retryWrites=true&w=majority&appName=winewinks', {
@@ -44,6 +47,33 @@ function checkAuth(req, res, next) {
     }
     res.redirect('/login');
 }
+
+app.get('/preview', async (req, res) => {
+  const { url } = req.query;
+  if (!url) return res.status(400).json({ error: 'URL ausente' });
+
+  try {
+    const { data: html } = await axios.get(url, {
+      headers: { 'User-Agent': 'Mozilla/5.0' } // Evita bloqueios
+    });
+    const $ = cheerio.load(html);
+
+    const getMeta = (prop) =>
+      $(`meta[property='${prop}']`).attr('content') ||
+      $(`meta[name='${prop}']`).attr('content');
+
+    const preview = {
+      titulo: getMeta('og:title') || $('title').text() || 'Sem título',
+      descricao: getMeta('og:description') || '',
+      imagem: getMeta('og:image') || '',
+      url
+    };
+
+    res.json(preview);
+  } catch (err) {
+    res.status(500).json({ error: 'Erro ao buscar link' });
+  }
+});
 
 app.use(express.static('login'))
 app.use('/login', express.static(path.join(__dirname, 'login')));
