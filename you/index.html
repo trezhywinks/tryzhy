@@ -146,7 +146,13 @@ padding-bottom: 10%;
   word-break: break-word;
 }
 
-.comentario {
+.message{
+padding: 10px;
+width: 450px;
+}
+
+
+.comentario{
 padding: 10px;
 width: 450px;
 }
@@ -160,10 +166,16 @@ width: 95%;
 }
 }
 
+.sendmessage{
+border: none;
+background: transparent;
+cursor: pointer;
+}
 </style>
-<div id="comment-section"></div>
+<div id="comment-section">
+<div id="chatBox" class="chat-bot" style="display: flex; flex-direction: column;"></div>
+</div>
 
-<div id="chatBox" style="display: flex; flex-direction: column;"></div>
 
     </div>
   </div>
@@ -186,6 +198,7 @@ width: 95%;
 </form>
   <script src="main.js"></script>
 <script>
+const usuariosCache = {};  // declare aqui, no topo do arquivo
 const path = window.location.pathname;
     const [user1, user2] = path.split("/tool-key/")[1].split("=");
 
@@ -231,13 +244,61 @@ const path = window.location.pathname;
     });
 
     // Criar mensagem
-    function mostrarMensagem(data, souEu) {
-      const div = document.createElement("div");
-      div.classList.add("message", souEu ? "me" : "you");
-      div.textContent = `${data.from}: ${data.message}`;
-      chatBox.appendChild(div);
-      chatBox.scrollTop = chatBox.scrollHeight;
+async function mostrarMensagem(data, souEu) {
+  try {
+    let usuario;
+
+    if (usuariosCache[data.from]) {
+      usuario = usuariosCache[data.from];
+    } else {
+      const res = await fetch(`http://localhost:3000/k/${data.from}`);
+      if (!res.ok) throw new Error("Usuário não encontrado");
+
+      const userData = await res.json();
+      usuario = {
+        nome: userData.username,
+        foto: userData.image.startsWith("data:image")
+          ? userData.image
+          : `data:image/png;base64,${userData.image}`
+      };
+      usuariosCache[data.from] = usuario;
+    }
+
+    const div = document.createElement("div");
+    div.classList.add("message", souEu ? "me" : "you");
+
+    // Usuário info
+    const usuarioInfo = document.createElement("div");
+    usuarioInfo.className = "usuario-info";
+
+    const img = document.createElement("img");
+    img.className = "foto-usuario";
+    img.src = usuario.foto;
+    img.alt = `Foto de ${usuario.nome}`;
+
+    const spanNome = document.createElement("span");
+    spanNome.className = "nome-usuario";
+    spanNome.textContent = usuario.nome;
+
+    usuarioInfo.appendChild(img);
+    usuarioInfo.appendChild(spanNome);
+
+    // Texto da mensagem
+    const textoMensagem = document.createElement("div");
+    textoMensagem.className = "texto-mensagem";
+    textoMensagem.textContent = data.message;
+
+    div.appendChild(usuarioInfo);
+    div.appendChild(textoMensagem);
+
+    chatBox.appendChild(div);
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+  } catch (err) {
+    console.error("Erro ao exibir mensagem:", err);
+  }
 }
+
 
   // --------------------------------------
 
@@ -273,8 +334,6 @@ async function carregarMig(otherUser) {
   }
 }
 carregarMig(otherUser);
-
-  // --------------------------------------
 
 
 </script>
