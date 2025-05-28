@@ -172,7 +172,7 @@ app.get('/tool-key/:params', (req, res) => {
   }
 
   // Serve o HTML genérico (o mesmo para ambos)
-  res.sendFile(path.join(__dirname, 'you', 'test.html'));
+  res.sendFile(path.join(__dirname, 'you', 'index.html'));
 });
 
 app.get('/winks/:username', async (req, res) => {
