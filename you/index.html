@@ -189,11 +189,10 @@ width: 95%;
 const path = window.location.pathname;
     const [user1, user2] = path.split("/tool-key/")[1].split("=");
 
-    // Quem está acessando é o primeiro da URL
     const currentUser = user1;
     const otherUser = user2;
 
-    // Mostrar "Conversa com X"
+
     const titleDiv = document.getElementById("migname");
     titleDiv.textContent = `${otherUser}`;
 
@@ -204,7 +203,6 @@ const path = window.location.pathname;
     const form = document.getElementById("messageForm");
     const input = document.getElementById("messageInput");
 
-    // Enviar mensagem
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const msg = input.value.trim();
@@ -222,7 +220,6 @@ const path = window.location.pathname;
       input.value = "";
     });
 
-    // Receber mensagem
     socket.addEventListener("message", (event) => {
       const data = JSON.parse(event.data);
       if (
@@ -241,25 +238,29 @@ const path = window.location.pathname;
       chatBox.appendChild(div);
       chatBox.scrollTop = chatBox.scrollHeight;
 }
-</script>
 
-<script>
-let currentUser = null;
-const dado = localStorage.getItem('data')
+  // --------------------------------------
 
-async function carregarMig(dado) {
+
+async function carregarMig(otherUser) {
   try {
-    const response = await fetch(`http://localhost:3000/k/${dado}`);
+    console.log('Valor de otherUser:', otherUser);
+
+    const response = await fetch(`http://localhost:3000/k/${otherUser}`);
     if (!response.ok) throw new Error('Usuário não encontrado');
 
     const data = await response.json();
-    currentUser = {
+    console.log('--:', data);
+
+    let currentUser = {
       nome: data.username,
       foto: data.image.startsWith('data:image') ? data.image : `data:image/png;base64,${data.image}`
     };
 
-    const migmig = document.querySelector('.migimage');    const migname = document.querySelector('.migname');
-    const migmigY = document.querySelector('.migimageY');    const mignameY = document.querySelector('.mignameY');
+    const migmig = document.querySelector('.migimage');
+    const migname = document.querySelector('.migname');
+    const migmigY = document.querySelector('.migimageY');
+    const mignameY = document.querySelector('.mignameY');
 
     migmig.src = currentUser.foto;
     migname.innerText = currentUser.nome;
@@ -268,11 +269,14 @@ async function carregarMig(dado) {
 
   } catch (error) {
     console.error('Erro ao carregar dados do usuário:', error);
-    alert('Erro ao carregar usuário. Comentários desativados.');
+    alert('Erro ao carregar dados do usuário.');
   }
 }
+carregarMig(otherUser);
 
-carregarMig(dado);
+  // --------------------------------------
+
+
 </script>
 </body>
 </html>
