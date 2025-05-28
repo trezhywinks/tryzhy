@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat Privado</title>
+  <style>
+    .me { text-align: right; }
+    .you { text-align: left; }
+  </style>
+</head>
+<body>
+  <h2 id="title">Chat</h2>
+  <div id="chat-box"></div>
+  <input type="text" id="msg" placeholder="Digite a mensagem">
+  <button id="send">Enviar</button>
+
+  <script>
+    // 1. Captura usuários da URL
+    const path = window.location.pathname; // /tool-key/winks=kym
+    const [from, to] = path.split("/tool-key/")[1].split("=");
+    
+    // 2. Busca dados do usuário "to"
+    fetch(`http://localhost/k/${to}`)
+      .then(res => res.json())
+      .then(user => {
+        document.getElementById('title').textContent = `Chat com ${user.name}`;
+        window.toUser = user;
+      });
+
+    // 3. Conecta ao WebSocket
+    const socket = new WebSocket("ws://localhost:9595");
+
+    // 4. Evento para enviar mensagem
+    document.getElementById("send").onclick = sendMessage;
+    document.getElementById("msg").addEventListener("keypress", (e) => {
+      if (e.key === "Enter") sendMessage();
+    });
+
+    function sendMessage() {
+      const text = document.getElementById("msg").value;
+      const msg = {
+        from,
+        to,
+        message: text,
+        image: "https://via.placeholder.com/40" // substituir com foto real se quiser
+      };
+      socket.send(JSON.stringify(msg));
+      appendMessage(msg, true);
+      document.getElementById("msg").value = '';
+    }
+
+    // 5. Recebe mensagem
+    socket.onmessage = (event) => {
+      const msg = JSON.parse(event.data);
+      if ((msg.from === to && msg.to === from)) {
+        appendMessage(msg, false);
+      }
+    };
+
+    // 6. Cria elemento de mensagem
+    function appendMessage(msg, souEu) {
+      const div = document.createElement("div");
+      div.className = souEu ? "me" : "you";
+
+      const img = document.createElement("img");
+      img.src = msg.image;
+      img.style = "width: 40px; height: 40px; border-radius: 100px;";
+
+      const nome = document.createElement("b");
+      nome.textContent = msg.from;
+
+      const texto = document.createElement("p");
+      texto.textContent = msg.message;
+
+      const wrap = document.createElement("div");
+      wrap.style = "display: flex; align-items: center; gap: 10px;";
+      wrap.appendChild(img);
+      const content = document.createElement("div");
+      content.appendChild(nome);
+      content.appendChild(texto);
+      wrap.appendChild(content);
+
+      div.appendChild(wrap);
+      document.getElementById("chat-box").appendChild(div);
+    }
+  </script>
+</body>
+</html>

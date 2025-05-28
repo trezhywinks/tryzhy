@@ -65,6 +65,9 @@ app.get("/users", async (req, res) => {
 
 });
 
+//  cors: { origin: '*' }
+//});
+
 
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
@@ -152,12 +155,24 @@ app.post('/register', upload.single('image'), async (req, res) => {
     }
 });
 
-app.get('/svg/enter', (req, res) => {
-res.sendFile(path.join(__dirname, 'winks_dif_tool.server', 'enter.svg'))
+app.get('/fsnfwenfsdbnfwerdv', (req, res) => {
+res.sendFile(path.join(__dirname, 'winks_dif_tool.server', 'fsnfwenfsdbnfwerdv.js'))
 });
 
 app.get('/winks_dif_tool_server', (req, res) => {
 res.sendFile(path.join(__dirname, 'winks_dif_tool.server', 'style.css'));
+});
+
+app.get('/tool-key/:params', (req, res) => {
+  const { params } = req.params;
+  const [from, to] = params.split('=');
+
+  if (!from || !to) {
+    return res.status(400).send('Parâmetros inválidos');
+  }
+
+  // Serve o HTML genérico (o mesmo para ambos)
+  res.sendFile(path.join(__dirname, 'you', 'test.html'));
 });
 
 app.get('/winks/:username', async (req, res) => {
@@ -179,7 +194,6 @@ app.get('/winks/:username', async (req, res) => {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${user.username}</title>
   <link rel="stylesheet" href="http://localhost:3000/winks_dif_tool_server">
-  <link rel="stylesheet" href="animete.css">
  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 </head>
 <body>
@@ -254,10 +268,6 @@ text-align: left;
 margin-top: 5px;
 }
 </style>
-<!--span>
-<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"viewBox="0 0 24 24" style="fill:green; font-size: 25px;">
-<path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"/></svg>
-</span-->
 </div>
 
 <div class="share view">
@@ -338,7 +348,9 @@ width: 95%;
 }
  
 </style>
-<div id="comment-section"></div>
+<div id="comment-section">
+<div id="chat"></div>
+</div>
     </div>
   </div>
 
@@ -348,139 +360,90 @@ width: 95%;
 <box-icon name='bong' type='solid' color='#fffbfb' style="width: 34px; height: 34px;" ></box-icon> </h2>
     </div>
     <div class="inputmeng">
-      <input type="text" name="" id="comment-input" >
+      <input type="text" name="" id="message" >
     </div>
-    <div class="sendmessage" id="submit-comment">
+    <div class="sendmessage" id="send">
       <span> 
 <box-icon name='telegram' type='logo' color='#ffffff' style="width: 34px; height: 34px;"  ></box-icon>
       </span>
     </div>
   </div>
-  <script src="main.js"></script>
+<!--script src="http://localhost:3000/fsnfwenfsdbnfwerdv"></script-->
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
 <script>
-</script>
+  const socket = io("http://localhost:3000");
 
-<script>
-let currentUser = null;
-const dado = localStorage.getItem('data')
-
-async function carregarUsuario(dado) {
-  try {
-    const response = await fetch("http://localhost:3000/k/" + dado);
-    if (!response.ok) throw new Error('Usuário não encontrado');
-
-    const data = await response.json();
-    currentUser = {
-      nome: data.username,
-      foto: data.image.startsWith('data:image') ? data.image : "data:image/png;base64" + data.image;
-    };
-  } catch (error) {
-    console.error('Erro ao carregar dados do usuário:', error);
-    alert('Erro ao carregar usuário. Comentários desativados.');
-    document.getElementById('comment-input').disabled = true;
-    document.getElementById('submit-comment').disabled = true;
-  }
-}
- 
-function criarComentarioHTML({ nome, foto, mensagem, data }) {
-  const divComentario = document.createElement('div');
-  divComentario.className = 'comentario';
-
-  const divUsuario = document.createElement('div');
-  divUsuario.className = 'usuario-info';
-
-  const img = document.createElement('img');
-  img.src = foto;
-  img.alt = 'Foto de' + nome;
-  img.className = 'foto-usuario';
-
-  const textoUsuario = document.createElement('div');
-  textoUsuario.className = 'info-texto';
-
-  const nomeEl = document.createElement('strong');
-  nomeEl.textContent = nome;
-
-  const dataEl = document.createElement('p');
-  dataEl.textContent = data;
-  dataEl.className = 'data-comentario';
-
-  textoUsuario.appendChild(nomeEl);
-  textoUsuario.appendChild(dataEl);
-
-  divUsuario.appendChild(img);
-  divUsuario.appendChild(textoUsuario);
-
-  const conteudoDiv = document.createElement('div');
-  conteudoDiv.className = 'conteudo';
-
-  const msgEl = document.createElement('p');
-  msgEl.textContent = mensagem;
-
-  conteudoDiv.appendChild(msgEl);
-
-  divComentario.appendChild(divUsuario);
-  divComentario.appendChild(conteudoDiv);
-
-  return divComentario;
-}
- 
-
-
-function salvarComentarioLocal(comentario) {
-  const comentarios = JSON.parse(localStorage.getItem('comentarios')) || [];
-  comentarios.push(comentario);
-  localStorage.setItem('comentarios', JSON.stringify(comentarios));
-}
-
-function carregarComentarios() {
-  const comentarios = JSON.parse(localStorage.getItem('comentarios')) || [];
-  comentarios.forEach(c => {
-    const div = criarComentarioHTML(c);
-    document.getElementById('comment-section').appendChild(div);
-  });
-}
-
-function adicionarComentario(mensagem) {
-  if (!mensagem.trim() || !currentUser) return;
-
-  const agora = new Date();
-  const dataFormatada = agora.toLocaleString('pt-BR', {
-day: '2-digit', month: '2-digit', year: 'numeric',
-    hour: '2-digit', minute: '2-digit'
-  });
-
-  const comentario = {
-    nome: currentUser.nome,
-    foto: currentUser.foto,
-    mensagem: mensagem.trim(),
-    data: dataFormatada
+  const meuUsuario = {
+    username: "joao", // ← pode vir do localStorage
+    image: "https://via.placeholder.com/40"
   };
 
-  const div = criarComentarioHTML(comentario);
-  document.getElementById('comment-section').appendChild(div);
-  salvarComentarioLocal(comentario);
-  document.getElementById('comment-input').value = '';
+  const outroUsername = window.location.pathname.split("/").pop();
 
-  const section = document.getElementById('comment-section');
-  section.scrollTop = section.scrollHeight;
+  const input = document.getElementById("comment-input");
+  const chatBox = document.getElementById("chat-box");
+
+  function enviarMensagem() {
+    const texto = input.value.trim();
+    if (!texto) return;
+
+    const msg = {
+      from: meuUsuario.username,
+      to: outroUsername,
+      message: texto,
+      image: meuUsuario.image
+    };
+
+    socket.emit("private message", msg);
+    mostrarMensagem(msg, true);
+    input.value = "";
+  }
+
+  document.getElementById("submit-comment").onclick = enviarMensagem;
+  input.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") enviarMensagem();
+  });
+
+  socket.on("private message", (msg) => {
+    // Mostrar só se for entre os dois usuários
+    if ((msg.from === outroUsername && msg.to === meuUsuario.username) ||
+        (msg.from === meuUsuario.username && msg.to === outroUsername)) {
+      mostrarMensagem(msg, msg.from === meuUsuario.username);
+    }
+  });
+
+function mostrarMensagem(msg, souEu) {
+  const div = document.createElement("div");
+  div.className = souEu ? "me" : "you";
+
+  const container = document.createElement("div");
+  container.style.display = "flex";
+  container.style.alignItems = "center";
+  container.style.gap = "10px";
+
+  const img = document.createElement("img");
+  img.src = msg.image;
+  img.style.width = "40px";
+  img.style.height = "40px";
+  img.style.borderRadius = "100px";
+
+  const content = document.createElement("div");
+
+  const nome = document.createElement("b");
+  nome.textContent = msg.from;
+
+  const mensagem = document.createElement("p");
+  mensagem.textContent = msg.message;
+
+  content.appendChild(nome);
+  content.appendChild(mensagem);
+  container.appendChild(img);
+  container.appendChild(content);
+  div.appendChild(container);
+
+  chatBox.appendChild(div);
 }
 
-document.getElementById('submit-comment').addEventListener('click', () => {
-  const msg = document.getElementById('comment-input').value;
-  adicionarComentario(msg);
-});
-
-document.getElementById('comment-input').addEventListener('keypress', e => {
-  if (e.key === 'Enter') {
-    const msg = document.getElementById('comment-input').value;
-    adicionarComentario(msg);
-  }
-});
-
-window.addEventListener('DOMContentLoaded', async () => {
-  await carregarUsuario(dado);
-  carregarComentarios();
-});
 </script>
 </body>
 </html>
