@@ -85,6 +85,11 @@ text-align: left;
 margin-top: 5px;
 }
 
+a{
+text-decoration: none;
+color: #3193e4;
+}
+
 .usuario-info{
 padding: 10px;
 display: block;
@@ -183,13 +188,22 @@ width: 95%;
 .texto-mensagem{
   white-space: pre-wrap;
   word-break: break-word;
+}
 
+.preview-img{
+width: 100%;
+height: 40vh;
 }
 
 .sendmessage{
 border: none;
 background: transparent;
 cursor: pointer;
+}
+
+.dsc{
+opacity: 0.6;
+font-size: 14px;
 }
 </style>
 <div id="comment-section">
@@ -283,9 +297,7 @@ async function mostrarMensagem(data, souEu) {
       if (!res.ok) throw new Error("Usuário não encontrado");
 
       const userData = await res.json();
-
-   
-   usuario = {
+      usuario = {
         nome: userData.username,
         foto: userData.image.startsWith("data:image")
           ? userData.image
@@ -297,7 +309,6 @@ async function mostrarMensagem(data, souEu) {
     const div = document.createElement("div");
     div.classList.add("message", souEu ? "me" : "you");
 
-    // Usuário info
     const usuarioInfo = document.createElement("div");
     usuarioInfo.className = "usuario-info";
 
@@ -306,42 +317,93 @@ async function mostrarMensagem(data, souEu) {
     img.src = usuario.foto;
     img.alt = `Foto de ${usuario.nome}`;
 
-  const dataEl = document.createElement('p');
-  dataEl.textContent = data.data;
-  dataEl.className = 'data-comentario';
-
-
+    const dataEl = document.createElement('p');
+    dataEl.textContent = data.data;
+    dataEl.className = 'data-comentario';
 
     const spanNome = document.createElement("strong");
     spanNome.className = "nome-usuario";
     spanNome.textContent = usuario.nome;
 
-  const textoUsuario = document.createElement('div');
-  textoUsuario.className = 'info-texto';
-
-//  textoUsuario.appendChild(usuarioInfo);
-  //textoUsuario.appendChild(dataEl);
-
-
-//    usuarioInfo.appendChild(img);
+    const textoUsuario = document.createElement('div');
+    textoUsuario.className = 'info-texto';
+    textoUsuario.appendChild(img);
     usuarioInfo.appendChild(spanNome);
-    usuarioInfo.appendChild(dataEl); 
+    usuarioInfo.appendChild(dataEl);
+    textoUsuario.appendChild(usuarioInfo);
 
-    // Texto da mensagem
     const textoMensagem = document.createElement("div");
     textoMensagem.className = "texto-mensagem";
-    textoMensagem.textContent = data.message;
-    textoUsuario.appendChild(img);
-   textoUsuario.appendChild(usuarioInfo);
 
-    div.appendChild(textoUsuario);
-   // div.appendChild(usuarioInfo);
+    const linkRegex = /(https?:\/\/[^\s]+)/g;
+    const links = data.message.match(linkRegex);
+
+setTimeout(async () => {
+    if (links && links.length > 0) {
+      for (const url of links) {
+        try {
+          const res = await fetch(`http://localhost:3000/preview?url=${encodeURIComponent(url)}`);
+          const meta = await res.json();
+
+          const titulo = meta.titulo || meta.title;
+          const imagem = meta.imagem || meta.image;
+          const linkUrl = meta.url || url;
+          const descricao = meta.descricao || meta.description;
+
+          if (titulo && imagem) {
+            const previewDiv = document.createElement("div");
+            previewDiv.className = "link-preview";
+
+            const previewImg = document.createElement("img");
+            previewImg.src = imagem;
+            previewImg.alt = titulo;
+            previewImg.className = "preview-img";
+
+            const previewTitle = document.createElement("h4");
+            previewTitle.textContent = titulo;
+
+//            if (descricao) {
+//              const previewDesc = document.createElement("p");
+//              previewDesc.textContent = descricao;
+//              previewDiv.appendChild(previewDesc);
+//            }
+
+            const previewLink = document.createElement("a");
+            previewLink.href = linkUrl;
+            previewLink.textContent = linkUrl;
+            previewLink.target = "_blank";
+
+            previewDiv.appendChild(previewLink);
+            previewDiv.appendChild(previewImg);
+            previewDiv.appendChild(previewTitle);
+
+            if (descricao) {
+              const previewDesc = document.createElement("p");
+              previewDesc.className = 'dsc';             
+              previewDesc.textContent = descricao;
+              previewDiv.appendChild(previewDesc);
+            }
+
+
+            textoMensagem.appendChild(previewDiv);
+          } else {
+            console.warn("⚠️ Dados da prévia incompletos: ", meta);
+            textoMensagem.textContent = data.message;
+          }
+        } catch (err) {
+          console.error("Erro ao buscar preview:", err);
+          textoMensagem.textContent = data.message;
+        }
+      }
+    } else {
+      textoMensagem.textContent = data.message;
+    }
+}, 0);
+
     div.appendChild(textoUsuario);
     div.appendChild(textoMensagem);
-
     chatBox.appendChild(div);
     chatBox.scrollTop = chatBox.scrollHeight;
-
   } catch (err) {
     console.error("Erro ao exibir mensagem:", err);
   }

@@ -12,6 +12,8 @@ const mongoose = require('mongoose');
 const app = express();
 const PORT = 3000;
 const host_server = `http://192.168.1.5:${PORT}`;
+const NodeCache = require("node-cache");
+const cache = new NodeCache({ stdTTL: 600 });
 app.use(cors());
 
 
