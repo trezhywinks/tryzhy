@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>You</title>
-  <link rel="stylesheet" href="http://localhost:3000/winks_dif_tool_server/">
+  <link rel="stylesheet" href="http://192.168.1.7:3000/winks_dif_tool_server/">
   <link rel="stylesheet" href="animete.css">  
  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 </head>
@@ -134,7 +134,7 @@ Visualizar perfil
     </div>
 <style>
 #comment-section{
-padding: 10px;
+padding: 5px;
 width: 450px;
 padding-bottom: 10%;
 }
@@ -142,15 +142,17 @@ padding-bottom: 10%;
 .usuario-info {
   display: flex;
   align-items: flex-start;
+margin-top: -10px;
   gap: 10px;
   margin-bottom: 5px;
 }
 
 
 .data-comentario {
-  font-size: 13px;
+  font-size: 12px;
 font-weight: 600;
-  color: #666;
+opacity: 0.6;
+  color: #fff;
 }
 
 .usuario-info {
@@ -160,13 +162,17 @@ font-weight: 600;
   margin-bottom: 5px;
 }
 
+.nome-usuario{
+font-size: 15px;
+}
+
 .comentario p {
   white-space: pre-wrap;
   word-break: break-word;
 }
 
 .message{
-padding: 10px;
+padding: 5px;
 width: 450px;
 }
 
@@ -181,13 +187,18 @@ width: 450px;
 width: 95%;
 }
 #comment-section{
-width: 95%;
+width: 90%;
+}
+
+.message{
+width: 100%;
 }
 }
 
 .texto-mensagem{
   white-space: pre-wrap;
   word-break: break-word;
+ font-size: 15px;
 }
 
 .preview-img{
@@ -244,7 +255,7 @@ const path = window.location.pathname;
     titleDiv.textContent = `${otherUser}`;
 
     // WebSocket
-    const socket = new WebSocket("ws://localhost:9595");
+    const socket = new WebSocket("ws://192.168.1.7:9595");
 
     const chatBox = document.getElementById("chatBox");
     const form = document.getElementById("messageForm");
@@ -293,7 +304,7 @@ async function mostrarMensagem(data, souEu) {
     if (usuariosCache[data.from]) {
       usuario = usuariosCache[data.from];
     } else {
-      const res = await fetch(`http://localhost:3000/k/${data.from}`);
+      const res = await fetch(`http://192.168.1.7:3000/k/${data.from}`);
       if (!res.ok) throw new Error("Usuário não encontrado");
 
       const userData = await res.json();
@@ -342,7 +353,7 @@ setTimeout(async () => {
     if (links && links.length > 0) {
       for (const url of links) {
         try {
-          const res = await fetch(`http://localhost:3000/preview?url=${encodeURIComponent(url)}`);
+          const res = await fetch(`http://192.168.1.7:3000/preview?url=${encodeURIComponent(url)}`);
           const meta = await res.json();
 
           const titulo = meta.titulo || meta.title;
@@ -417,7 +428,7 @@ async function carregarMig(otherUser) {
   try {
     console.log('Valor de otherUser:', otherUser);
 
-    const response = await fetch(`http://localhost:3000/k/${otherUser}`);
+    const response = await fetch(`http://192.168.1.7:3000/k/${otherUser}`);
     if (!response.ok) throw new Error('Usuário não encontrado');
 
     const data = await response.json();
