@@ -702,7 +702,7 @@ document.querySelector('.wine_winks').style.display = "none";
 <script>
 const dado = localStorage.getItem('data')
 const if_migmig = document.querySelector('.if_migmig');
-if_migmig.src = `http://localhost:3000/winks/${dado}`;
+if_migmig.src = `http://localhost:3000/tool-key/${dado}=${dado}`;
 document.getElementById('sererty').innerText = dado;
 document.querySelector('.muiname').innerText = dado;
 </script>
