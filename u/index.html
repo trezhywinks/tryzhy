@@ -414,7 +414,7 @@ document.querySelector('.removet').style.display = "none";
                    const gioB = data.image.startsWith('data:image') ? data.image : `data:image/png;base64,${data.image}`;
 
                     resultDiv.innerHTML = `
-                        <div class="servers">
+                        <div class="servers" id="nef">
                             <div class="imagembusct">
                                 <img src="${gioB}" class="auauaua" style="width: 50; height: 50; border-radius: 100px;"/>
                             </div>
@@ -594,6 +594,12 @@ height: 100vh;
 display: none;
 }
 
+.iframe_susclick{
+width: 100%;
+height: 100%;
+display: none;
+}
+
 .iframe_youmigmig{
 width: 100%;  
 height: 100vh;
@@ -606,6 +612,10 @@ width: 100%; height: 100vh;
 </style>
 <div class="iframe_message">
   <iframe class="" src="./winewinks/index.html" frameborder="0"></iframe>
+</div>
+
+<div class="iframe_susclick">
+  <iframe class="susclick" src="" frameborder="0"></iframe>
 </div>
 
 <div class="iframe_youmigmig">
@@ -664,6 +674,21 @@ document.querySelector('.iframe_message').style.display = "inline";
 document.querySelector('.wine_winks').style.display = "none";
 
 })
+
+document.getElementById('nef').addEventListener('click', () => {
+//  const search = document.getElementById('search').value;
+  //const kuseri = localStorage.getItem('data');
+document.querySelector('.iframe_youmigmig').style.display = "none";
+  document.querySelector('.recad_o').style.display = "none";
+  document.querySelector('.wine_winks').style.display = "none";
+ 
+//const finh = docuement.querySelector('.susclick');
+  //const iframesus = document.querySelector('.iframe_susclick');
+//  finh.src = `http://localhost:3000/tool-key/winks=winks`
+  //iframesus.style.display = "inline";
+});
+
+
 </script>
 
 </div>
