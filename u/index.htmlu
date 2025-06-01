@@ -273,6 +273,89 @@ spannome.innerText = nomenick;
         }
     </script>
 </div>
+<div class="buscaruser_00">
+    <style>        #buscv {            display: none;            margin-top: 10px;            font-style: italic;            color: #666;fon-size: 14px; }#search{background: #121212; color: #fff; border: none; border-radius: 5px; font-size: 16px; width: 100%; padding: 8px; outline: none;} </style>
+    <input type="text" name="text" id="search" placeholder="Buscar User"><br>
+    <p id="buscv">Procurando usuário...</p><br>
+    <div id="result"></div>
+    <script>
+        const searchInput = document.getElementById("search");
+        const resultDiv = document.getElementById("result");
+        const buscandoSpan = document.getElementById("buscv");
+
+        let timeout = null;
+
+        searchInput.addEventListener("input", () => {
+            const nome = searchInput.value.trim();
+
+            clearTimeout(timeout);
+            if (nome === "") {
+                resultDiv.innerHTML = "";
+                buscandoSpan.style.display = "none";
+                return;
+            }
+
+            buscandoSpan.style.display = "inline";
+
+            timeout = setTimeout(() => {
+                fetchUser(nome);
+            }, 500);
+        });
+
+        function fetchUser(nome) {
+            fetch(`http://localhost:3000/k/${nome}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Usuário não encontrado");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (!data || Object.keys(data).length === 0) {
+                        showError();
+                        return;
+                    }
+
+                   const gioB = data.image.startsWith('data:image') ? data.image : `data:image/png;base64,${data.image}`;
+
+                    resultDiv.innerHTML = `
+                        <div class="servers">
+                            <div class="imagembusct">
+                                <img src="${gioB}" class="auauaua" style="width: 50; height: 50; border-radius: 100px;"/>
+                            </div>
+                            <div class="imagembusct34">
+<div class="myser">
+      <div class="dixed">
+      <div class="firl">
+    <span style="font-weight: 500; font-size: 17px;">${data.username}</span>
+      </div>
+</div>
+<p style="opacity: 0.6; font-size: 14px;">Perfil de ${data.username}</p>
+</div>
+                            </div>
+                        </div>
+                    `;
+                    resultDiv.style.display = "block";
+                    buscandoSpan.style.display = "none";
+                })
+                .catch(() => {
+                    showError();
+                });
+        }
+
+        function showError() {
+            resultDiv.innerHTML = `
+                <div class="busct">
+                    <div class="imagembusct34">
+                        <strong style="font-size: 20px; font-weight: 600">Usuário não encontrado.</strong><br>
+                    </div>
+                </div>`;
+            resultDiv.style.display = "block";
+            buscandoSpan.style.display = "none";
+        }
+    </script>
+</div>
+<!-- buscar -->
 <div class="settingsf">
 
 <div class="topsettings">
@@ -368,8 +451,13 @@ document.querySelector('.removet').style.display = "none";
 </div>
 </div>
 <div class="susu">
+<center>
+<br>
+<img src="nay_cat.gif" width="60" height="60"><br>
+</center>
+
 <div class="buscaruser_00">
-    <style>        #buscv { display: none;            margin-top: 10px;            font-style: italic;            color: #666;fon-size: 14px;        }#search{background: #121212; color: #fff; border: none; border-radius: 5px; font-size: 16px; width: 100%; padding: 8px; outline: none;}    </style>
+    <style>        #buscv {            display: none;            margin-top: 10px;            font-style: italic;            color: #666;fon-size: 14px; }#search{background: #121212; color: #fff; border: none; border-radius: 5px; font-size: 16px; width: 100%; padding: >
     <input type="text" name="text" id="search" placeholder="Buscar User"><br>
     <p id="buscv">Procurando usuário...</p><br>
     <div id="result"></div>
@@ -427,8 +515,7 @@ document.querySelector('.removet').style.display = "none";
 </div>
 <p style="opacity: 0.6; font-size: 14px;">Perfil de ${data.username}</p>
 </div>
-
-                            </div>
+  </div>
                         </div>
                     `;
                     resultDiv.style.display = "block";
@@ -443,8 +530,8 @@ document.querySelector('.removet').style.display = "none";
             resultDiv.innerHTML = `
                 <div class="busct">
                     <div class="imagembusct34">
-<img src="nay_cat.gif" width="60" height="60"><br>
-                        <strong style="font-size: 20px; font-weight: 600">Usuário não encontrado.</strong><br>
+<img src="nay_cat.gif" width="60" height="60"><br>                      
+  <strong style="font-size: 20px; font-weight: 600">Usuário não encontrado.</strong><br>
                     </div>
                 </div>`;
             resultDiv.style.display = "block";
@@ -452,13 +539,9 @@ document.querySelector('.removet').style.display = "none";
         }
     </script>
 </div>
-
-<center>
-<br>
-<!--img src="nay_cat.gif" width="60" height="60"><br>
-</center>
-<h3 class="fingh">Oops! Nao ha nem um sussuro aqui</h3-->
+<h3 class="fingh">Oops! Nao ha nem um sussuro aqui</h3>
 </div>
+
 <div class="botswinks_obots">
 <style>
 .botswinks_obots{display: none; text-align: center;  padding: 10px; margin-top: 10%; width: 100%;}
