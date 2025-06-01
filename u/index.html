@@ -273,57 +273,97 @@ spannome.innerText = nomenick;
         }
     </script>
 </div>
-<div class="buscaruser_0">
-<style>
-.buscaruser_0{display: none;}
-</style>
-    <input type="text" id="search" placeholder="Digite o nome do usuário">
+<div class="buscaruser_00">
+    <style>
+        #buscv {
+            display: none;            margin-top: 10px;            font-style: italic;            color: #666;fon-size: 14px;
+        }
+#search{
+background: #121212; color: #fff; border: none; border-radius: 5px; font-size: 16px; width: 100%; padding: 8px; outline: none;
+}
+    </style>
+
+    <input type="text" name="text" id="search" placeholder="Buscar User"><br>
+    <p id="buscv">Procurando usuário...</p><br>
     <div id="result"></div>
-<script>
-function fetchUser(nome) {
-    fetch(`http://localhost:3000/user/${nome}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Usuário não encontrado"); // Força erro para ir ao .catch()
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (!data || Object.keys(data).length === 0) { // Se os dados forem vazios
-                showError();
+
+    <script>
+        const searchInput = document.getElementById("search");
+        const resultDiv = document.getElementById("result");
+        const buscandoSpan = document.getElementById("buscv");
+
+        let timeout = null;
+
+        searchInput.addEventListener("input", () => {
+            const nome = searchInput.value.trim();
+
+            clearTimeout(timeout);
+            if (nome === "") {
+                resultDiv.innerHTML = "";
+                buscandoSpan.style.display = "none";
                 return;
             }
 
+            buscandoSpan.style.display = "inline";
+
+            timeout = setTimeout(() => {
+                fetchUser(nome);
+            }, 500);
+        });
+
+        function fetchUser(nome) {
+            fetch(`http://localhost:3000/k/${nome}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Usuário não encontrado");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (!data || Object.keys(data).length === 0) {
+                        showError();
+                        return;
+                    }
+
+                   const gioB = data.image.startsWith('data:image') ? data.image : `data:image/png;base64,${data.image}`;
+
+                    resultDiv.innerHTML = `
+                        <div class="servers">
+                            <div class="imagembusct">
+                                <img src="${gioB}" class="auauaua" style="width: 50; height: 50; border-radius: 100px;"/>
+                            </div>
+                            <div class="imagembusct34">
+<div class="myser">
+      <div class="dixed">
+      <div class="firl">
+    <span style="font-weight: 500; font-size: 17px;">${data.username}</span>
+      </div>
+</div>
+<p style="opacity: 0.6; font-size: 14px;">Perfil de ${data.username}</p>
+</div>
+
+                            </div>
+                        </div>
+                    `;
+                    resultDiv.style.display = "block";
+                    buscandoSpan.style.display = "none";
+                })
+                .catch(() => {
+                    showError();
+                });
+        }
+
+        function showError() {
             resultDiv.innerHTML = `
                 <div class="busct">
-                    <div class="imagembusct">
-                        <img src="${data.imagem}" class="auauaua"/>
-                    </div>
                     <div class="imagembusct34">
-                        <strong style="font-size: 20px; font-weight: 600">${data.nome}</strong><br>
-                        <strong style="color: #4b4a4a; font-size: 19px; font-weight: 600;">${data.bio}</strong>
+                        <strong style="font-size: 20px; font-weight: 600">Usuário não encontrado.</strong><br>
                     </div>
-                </div>
-            `;
+                </div>`;
             resultDiv.style.display = "block";
-            document.getElementById('buscv').style.display = "none";
-        })
-        .catch(() => {
-            showError(); // Chama função para mostrar a div de erro
-        });
-}
-
-// Função para mostrar a div de erro
-function showError() {
-    resultDiv.innerHTML = `
-        <div class="busct">
-            <div class="imagembusct34">
-                <strong style="font-size: 20px; font-weight: 600">Usuário não encontrado.</strong><br>
-            </div>
-        </div>`;
-    resultDiv.style.display = "block";
-}
-</script>
+            buscandoSpan.style.display = "none";
+        }
+    </script>
 </div>
 <!-- buscar -->
 <div class="settingsf">
@@ -422,6 +462,7 @@ document.querySelector('.removet').style.display = "none";
 </div>
 <div class="susu">
 <center>
+<br>
 <img src="nay_cat.gif" width="60" height="60"><br>
 </center>
 <h3 class="fingh">Oops! Nao ha nem um sussuro aqui</h3>
@@ -502,7 +543,6 @@ async function carregarUsuario(dado) {
       nome: data.username,
       foto: data.image.startsWith('data:image') ? data.image : `data:image/png;base64,${data.image}`
     };
-
     const migmig = document.querySelector('.migimage');
     const migname = document.querySelector('.migname');
 
@@ -516,10 +556,7 @@ async function carregarUsuario(dado) {
 
 carregarUsuario(dadoY);
 </script>
-
 </div>
-
-
 <script>
   function isMobile() {
     return window.matchMedia("(max-width: 999px)").matches;
