@@ -200,7 +200,7 @@ justify-content: space-between;
     <br>
 <style>
 #sererty{ font-weight: 600; opacity: 0.5;}
-#nome, #bio{
+#nome, #bio, #usernameAntigo{
 background: #121212;
 font-size: 17px;
 font-weight: 600;
@@ -213,12 +213,19 @@ outline: none;
 }
 .saveb{background: #3193e4; margin-top: 5px; padding: 10px; color: #fff;font-size: 17px; border: none; font-weight: 600; border-radius: 10px; width: 100%}
 </style>
-    <input type="text" id="nome" placeholder="Seu nome">
+<input type="text" value="" id="usernameAntigo"/>
+<input type="text" id="nome" value="" placeholder="Novo username" />
+    <!--input type="text" id="nome" placeholder="Seu nome"-->
 <p style="font-size: 13px; margin-left: 10px; margin-top: 5px; opacity: 0.6; font-weight: 600;">Digite seu nome e adicione uma foto de perfil.</p>
     <input type="text" id="bio" placeholder="Sobre mim"><br>
 <p style="font-size: 13px; margin-left: 10px; margin-top: 5px; opacity: 0.6; font-weight: 600;">Voce pode escrever algo sobre voce.</p>
     <button class="saveb" onclick="salvarPerfil()">Salvar</button>
 <script>
+const usrData = localStorage.getItem('data');
+const usernameAntigoInput = document.getElementById('usernameAntigo');
+usernameAntigoInput.value = usrData;
+
+
 document.getElementById('nome').addEventListener('input', function(event) {
 const nomenick = document.getElementById('nome').value;
 const spannome = document.getElementById('sererty');
@@ -227,51 +234,54 @@ spannome.innerText = nomenick;
 }
 });
 </script>
-    <script>
-        function previewFoto() {
-            const fotoInput = document.getElementById("foto");
-            const fotoPreview = document.getElementById("fotoPreview");
-            const file = fotoInput.files[0];
-            const reader = new FileReader();
+<script>
+    function previewFoto() {
+        const fotoInput = document.getElementById("foto");
+        const fotoPreview = document.getElementById("fotoPreview");
+        const file = fotoInput.files[0];
+        const reader = new FileReader();
 
-            reader.onloadend = function () {
-                fotoPreview.src = reader.result;
-            };
+        reader.onloadend = function () {
+            fotoPreview.src = reader.result;
+        };
 
-            if (file) {
-                reader.readAsDataURL(file); // Converte a imagem para Base64
-            }
+        if (file) {
+            reader.readAsDataURL(file); // Converte a imagem para Base64
+        }
+    }
+
+    async function salvarPerfil() {
+        const nome = document.getElementById("nome").value;
+        const usernameAntigo = document.getElementById("usernameAntigo").value;
+        const bio = document.getElementById("bio").value;
+        const foto = document.getElementById("foto").files[0];
+
+        const formData = new FormData();
+        formData.append("nome", nome);
+        formData.append("usernameAntigo", usernameAntigo); // Envia o antigo
+        formData.append("bio", bio);
+        if (foto) {
+            formData.append("foto", foto); // Adiciona a foto ao FormData
         }
 
-        async function salvarPerfil() {
-            const nome = document.getElementById("nome").value;
-            const bio = document.getElementById("bio").value;
-            const foto = document.getElementById("foto").files[0];
+        try {
+            const response = await fetch('http://192.168.1.7:3000/upload', {
+                method: 'POST',
+                body: formData
+            });
 
-            const formData = new FormData();
-            formData.append("nome", nome);
-            formData.append("bio", bio);
-            if (foto) {
-                formData.append("foto", foto); // Adiciona a foto ao FormData
+            const result = await response.json();
+            if (response.ok) {
+                alert("Perfil salvo com sucesso!");
+            } else {
+                alert(`Erro: ${result.message}`);
             }
-
-            try {
-                const response = await fetch('http://seu-backend.com/api/editarPerfil', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                const result = await response.json();
-                if (response.ok) {
-                    alert("Perfil salvo com sucesso!");
-                } else {
-                    alert(`Erro: ${result.message}`);
-                }
-            } catch (error) {
-                alert("Erro ao salvar o perfil: " + error.message);
-            }
+        } catch (error) {
+            alert("Erro ao salvar o perfil: " + error.message);
         }
-    </script>
+    }
+</script>
+
 </div>
 <div class="settingsf">
 
@@ -398,7 +408,7 @@ document.querySelector('.removet').style.display = "none";
         });
 
         function fetchUser(nome) {
-            fetch(`http://localhost:3000/k/${nome}`)
+            fetch(`http://192.168.1.7:3000/k/${nome}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error("Usuário não encontrado");
@@ -526,7 +536,7 @@ const dadoY = localStorage.getItem('data');
 
 async function carregarUsuario(dado) {
   try {
-    const response = await fetch(`http://localhost:3000/k/${dado}`);
+    const response = await fetch(`http://192.168.1.7:3000/k/${dado}`);
     if (!response.ok) throw new Error('Usuário não encontrado');
 
     const data = await response.json();
@@ -741,7 +751,7 @@ document.querySelector('.wine_winks').style.display = "none";
 <script>
 const dado = localStorage.getItem('data')
 const if_migmig = document.querySelector('.if_migmig');
-if_migmig.src = `http://localhost:3000/tool-key/${dado}=${dado}`;
+if_migmig.src = `http://192.168.1.7:3000/tool-key/${dado}=${dado}`;
 document.getElementById('sererty').innerText = dado;
 document.querySelector('.muiname').innerText = dado;
 </script>
@@ -784,7 +794,7 @@ document.querySelector('.iframe_youmigmig').style.display = "none";
 const finh = document.querySelector('.susclick');
   const iframesus = document.querySelector('.iframe_susclick');
  iframesus.style.display = "inline";
-  finh.src = `http://localhost:3000/tool-key/${kuseri}=${search}`;
+  finh.src = `http://192.168.1.7:3000/tool-key/${kuseri}=${search}`;
 });
 
 

@@ -9,6 +9,7 @@ const axios = require('axios');
 const session = require('express-session');
 const path = require('path');
 const mongoose = require('mongoose');
+const fs = require('fs');
 const app = express();
 const PORT = 3000;
 const host_server = `http://192.168.1.5:${PORT}`;
@@ -75,6 +76,44 @@ app.get('/preview', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: 'Erro ao buscar link' });
   }
+});
+
+app.post('/upload', upload.single('foto'), async (req, res) => {
+    try {
+        const { nome, usernameAntigo, bio } = req.body;
+        const fotoBuffer = req.file?.buffer;
+
+        if (!usernameAntigo) {
+            return res.status(400).json({ message: 'Username antigo é obrigatório.' });
+        }
+
+        const user = await User.findOne({ username: usernameAntigo });
+        if (!user) {
+            return res.status(404).json({ message: 'Usuário não encontrado.' });
+        }
+
+        if (nome && nome !== usernameAntigo) {
+            const existing = await User.findOne({ username: nome });
+            if (existing) {
+                return res.status(409).json({ message: 'Esse nome de usuário já existe.' });
+            }
+            user.username = nome;
+        }
+
+        if (bio) user.bio = bio;
+
+        if (fotoBuffer) {
+            // converte para base64
+            const base64Image = `data:${req.file.mimetype};base64,${fotoBuffer.toString('base64')}`;
+            user.image = base64Image;
+        }
+
+        await user.save();
+        res.json({ message: 'Perfil salvo com sucesso!' });
+    } catch (err) {
+        console.error('Erro ao salvar perfil:', err);
+        res.status(500).json({ message: 'Erro interno do servidor.' });
+    }
 });
 
 app.use(express.static('login'))
