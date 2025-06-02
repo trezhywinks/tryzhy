@@ -196,7 +196,7 @@ let currentUser = null;
 const dado = JSON.parse(localStorage.getItem('data') || '{}').username || '';
 async function carregarUsuario(dado) {
   try {
-    const response = await fetch(`http://localhost:3000/k/${dado}`);
+    const response = await fetch(`http://192.168.1.7:3000/k/${dado}`);
     if (!response.ok) throw new Error('Usuário não encontrado');
 
     const data = await response.json();
