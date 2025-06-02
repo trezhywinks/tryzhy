@@ -193,7 +193,7 @@ width: 95%;
   <script src="main.js"></script>
 <script>
 let currentUser = null;
-const dado = localStorage.getItem('data')
+const dado = JSON.parse(localStorage.getItem('data') || '{}').username || '';
 async function carregarUsuario(dado) {
   try {
     const response = await fetch(`http://localhost:3000/k/${dado}`);

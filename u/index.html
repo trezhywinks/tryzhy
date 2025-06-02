@@ -221,7 +221,9 @@ outline: none;
 <p style="font-size: 13px; margin-left: 10px; margin-top: 5px; opacity: 0.6; font-weight: 600;">Voce pode escrever algo sobre voce.</p>
     <button class="saveb" onclick="salvarPerfil()">Salvar</button>
 <script>
-const usrData = localStorage.getItem('data');
+console.log(localStorage.getItem('data'));
+
+let usrData = JSON.parse(localStorage.getItem('data') || '{}').username || '';
 const usernameAntigoInput = document.getElementById('usernameAntigo');
 usernameAntigoInput.value = usrData;
 
@@ -240,7 +242,7 @@ spannome.innerText = nomenick;
         const fotoPreview = document.getElementById("fotoPreview");
         const file = fotoInput.files[0];
         const reader = new FileReader();
-
+       
         reader.onloadend = function () {
             fotoPreview.src = reader.result;
         };
@@ -251,11 +253,11 @@ spannome.innerText = nomenick;
     }
 
     async function salvarPerfil() {
+//const usrData = JSON.parse(localStorage.getItem('data') || '{}').username || '';
         const nome = document.getElementById("nome").value;
         const usernameAntigo = document.getElementById("usernameAntigo").value;
         const bio = document.getElementById("bio").value;
         const foto = document.getElementById("foto").files[0];
-
         const formData = new FormData();
         formData.append("nome", nome);
         formData.append("usernameAntigo", usernameAntigo); // Envia o antigo
@@ -273,13 +275,53 @@ spannome.innerText = nomenick;
             const result = await response.json();
             if (response.ok) {
                 alert("Perfil salvo com sucesso!");
-            } else {
+               atualizarUsernameLocalStorage(nome);
+                 recarregarVariaveisComUsername();
+          } else {
                 alert(`Erro: ${result.message}`);
-            }
+            } 
         } catch (error) {
             alert("Erro ao salvar o perfil: " + error.message);
         }
     }
+
+function atualizarUsernameLocalStorage(novoUsername) {
+    let data = localStorage.getItem('data');
+
+    try {
+        data = JSON.parse(data); // Converte a string para objeto
+    } catch {
+        data = {}; // Se falhar, cria um novo objeto
+    }
+
+    data.username = novoUsername;
+    localStorage.setItem('data', JSON.stringify(data));
+    console.log("Username atualizado no localStorage:", novoUsername);
+}
+
+function recarregarVariaveisComUsername() {
+    let data = localStorage.getItem('data');
+
+    try {
+        data = JSON.parse(data);
+    } catch {
+        data = {};
+    }
+
+    const novoUsername = data.username || '';
+
+    // Reatribua as variáveis
+    window.muiname = novoUsername;
+    window.outroNome = novoUsername;
+    window.usrData = novoUsername;
+    window.dadoY = novoUsername;
+    window.dado = novoUsername;
+    window.kuseri = novoUsername;
+
+    console.log("Variáveis recarregadas com username:", novoUsername);
+}
+
+
 </script>
 
 </div>
@@ -532,7 +574,7 @@ margin-left: 5px;
 
 <script>
 let currentUser = null;
-const dadoY = localStorage.getItem('data');
+let dadoY = JSON.parse(localStorage.getItem('data') || '{}').username || '';
 
 async function carregarUsuario(dado) {
   try {
@@ -749,7 +791,7 @@ document.querySelector('.wine_winks').style.display = "none";
 <script src="back.js"></script>
 
 <script>
-const dado = localStorage.getItem('data')
+let dado = JSON.parse(localStorage.getItem('data') || '{}').username || '';
 const if_migmig = document.querySelector('.if_migmig');
 if_migmig.src = `http://192.168.1.7:3000/tool-key/${dado}=${dado}`;
 document.getElementById('sererty').innerText = dado;
@@ -786,7 +828,7 @@ document.getElementById('redclick').addEventListener('click', () => {
 document.getElementById('result').addEventListener('click', () => {
 console.log("nada aqui manos");
  const search = document.getElementById('search').value;
- const kuseri = localStorage.getItem('data');
+ const kuseri = JSON.parse(localStorage.getItem('data') || '{}').username || '';
 document.querySelector('.iframe_youmigmig').style.display = "none";
   document.querySelector('.recad_o').style.display = "none";
   document.querySelector('.wine_winks').style.display = "none";

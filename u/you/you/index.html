@@ -190,7 +190,7 @@ width: 95%;
 
 <script>
 let currentUser = null;
-const dado = localStorage.getItem('data')
+const dado = JSON.parse(localStorage.getItem('data') || '{}').username || '';
 
 async function carregarMig(dado) {
   try {

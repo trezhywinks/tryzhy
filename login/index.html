@@ -191,10 +191,12 @@ window.location.href = data.redirect;
                 document.getElementById('loginForm').reset();
             }
         });
-function saveuser() { 
-const vinf = document.getElementById('user').value
-localStorage.setItem('data', vinf)
-alert(`welcome ${vinf}`)
+function saveuser() {
+    const vinf = document.getElementById('user').value;
+    const userData = { username: vinf };
+
+    localStorage.setItem('data', JSON.stringify(userData));
+    alert(`Welcome ${vinf}`);
 }
 
 
