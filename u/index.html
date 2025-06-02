@@ -336,7 +336,7 @@ function recarregarVariaveisComUsername() {
 <br>
 <div class="painfile">
 <div class="myfilepain">
-<img src="https://trezhy.onrender.com/imagens/681ac031c1975c16753b18bf.png" style="width: 70; height: 70; border-radius: 5px; border: 4px solid #121212;">
+<img id="visioK"  src="" style="width: 70; height: 70; border-radius: 5px; border: 4px solid #121212;">
 </div>
 <div class="namepain"><h3 class="muiname">Nickname</h3><p style="opacity: 0.6; font-size: 15px;">Hello World</p></div>
 <script>
@@ -591,6 +591,8 @@ async function carregarUsuario(dadoY) {
     const migmig = document.querySelector('.migimage');
     const migname = document.querySelector('.migname');
     const fotoPrevieww = document.getElementById('fotoPreview');
+    const visioK = document.getElementById('visioK');
+    visioK.src = currentUser.foto;
     migmig.src = currentUser.foto;
    fotoPrevieww.src = currentUser.foto;
     migname.innerText = `${currentUser.nome} (you)`;
