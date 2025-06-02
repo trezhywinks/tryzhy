@@ -414,7 +414,7 @@ document.querySelector('.removet').style.display = "none";
                    const gioB = data.image.startsWith('data:image') ? data.image : `data:image/png;base64,${data.image}`;
 
                     resultDiv.innerHTML = `
-                        <div class="servers" id="nef">
+                        <div class="servers rave" id="nef">
                             <div class="imagembusct">
                                 <img src="${gioB}" class="auauaua" style="width: 50; height: 50; border-radius: 100px;"/>
                             </div>
@@ -675,20 +675,6 @@ document.querySelector('.wine_winks').style.display = "none";
 
 })
 
-document.getElementById('nef').addEventListener('click', () => {
-//  const search = document.getElementById('search').value;
-  //const kuseri = localStorage.getItem('data');
-document.querySelector('.iframe_youmigmig').style.display = "none";
-  document.querySelector('.recad_o').style.display = "none";
-  document.querySelector('.wine_winks').style.display = "none";
- 
-//const finh = docuement.querySelector('.susclick');
-  //const iframesus = document.querySelector('.iframe_susclick');
-//  finh.src = `http://localhost:3000/tool-key/winks=winks`
-  //iframesus.style.display = "inline";
-});
-
-
 </script>
 
 </div>
@@ -747,7 +733,7 @@ document.querySelector('.iframe_youmigmig').style.display = "none";
 
 </div>
 <script src="./sinf_main.js"></script>
-<script src="main_java_cat.js"></script>
+<script src="main_java_catt"></script>
 <script src="config_main.js"></script>
 <script src="./winks.js"></script>
 <script src="back.js"></script>
@@ -786,6 +772,21 @@ document.getElementById('redclick').addEventListener('click', () => {
     }
   });
 });
+
+document.getElementById('result').addEventListener('click', () => {
+console.log("nada aqui manos");
+ const search = document.getElementById('search').value;
+ const kuseri = localStorage.getItem('data');
+document.querySelector('.iframe_youmigmig').style.display = "none";
+  document.querySelector('.recad_o').style.display = "none";
+  document.querySelector('.wine_winks').style.display = "none";
+
+const finh = document.querySelector('.susclick');
+  const iframesus = document.querySelector('.iframe_susclick');
+ iframesus.style.display = "inline";
+  finh.src = `http://localhost:3000/tool-key/${kuseri}=${search}`;
+});
+
 
 </script>
 
