@@ -12,6 +12,7 @@ const mongoose = require('mongoose');
 const fs = require('fs');
 const app = express();
 const PORT = 3000;
+const HOST = "192.168.1.7"
 const host_server = `http://192.168.1.5:${PORT}`;
 const NodeCache = require("node-cache");
 const cache = new NodeCache({ stdTTL: 600 });
@@ -231,7 +232,7 @@ res.sendFile(path.join(__dirname, 'winks_dif_tool.server', 'fsnfwenfsdbnfwerdv.j
 });
 
 app.get('/winks_dif_tool_server', (req, res) => {
-res.sendFile(path.join(__dirname, 'winks_dif_tool.server', 'style.css'));
+res.sendFile(path.join(__dirname, 'you', 'style.css'));
 });
 
 app.get('/tool-key/:params', (req, res) => {
@@ -242,8 +243,7 @@ app.get('/tool-key/:params', (req, res) => {
     return res.status(400).send('Parâmetros inválidos');
   }
 
-  // Serve o HTML genérico (o mesmo para ambos)
-  res.sendFile(path.join(__dirname, 'you', 'index.html'));
+ res.sendFile(path.join(__dirname, 'you', 'index.html'));
 });
 
 app.get('/winks/:username', async (req, res) => {
@@ -527,7 +527,7 @@ function mostrarMensagem(msg, souEu) {
   }
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, HOST, () => {
 qrcode.generate(host_server, {small: true}, function(qrcode) {
 console.log(qrcode);
 })

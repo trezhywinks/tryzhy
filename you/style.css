@@ -70,7 +70,7 @@ input {
     background: #1B1B1EAB;
     border-top: 1px solid #CACACA0A;
     backdrop-filter: blur(10px);
-    z-index: 4;
+    z-index: 2;
 }
 
 .topmessage{
@@ -175,12 +175,13 @@ margin: 0 auto 10px;
     display: flex;
 }
 .iframe{
+    background: #181818;
     height:100vh;
     position: fixed;
-    left: 60%; 
+    left: 0; 
     right:0;
     animation: --iframe 0.7s ease-out;
-    z-index: 1;
+    z-index: 3;
     display: none;
 }
 iframe{

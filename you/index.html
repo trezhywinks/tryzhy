@@ -5,10 +5,104 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>You</title>
-  <link rel="stylesheet" href="http://localhost:3000/winks_dif_tool_server/">
+  <link rel="stylesheet" href="http://192.168.1.7:3000/winks_dif_tool_server/">
   <link rel="stylesheet" href="animete.css">  
  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 </head>
+<style>
+    .profile-header {
+      position: relative;
+      background-color:#181818;
+      width: 850px;
+      margin: auto;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .cover-photo {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    .profile-pic {
+      position: absolute;
+      top: 170px; /* ajustado para cima */
+      left: 30px;
+      width: 120px;
+      height: 120px;
+      border: 4px solid #141414;
+      border-radius: 4px;
+      object-fit: cover;
+      background: #000;
+    }
+
+    .profile-info {
+      margin-left: 170px;
+      padding: 10px 20px;
+    }
+
+    .profile-info h2 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .tabs {
+      display: flex;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      background: #121212;
+      padding: 10px 20px;
+      margin-top: 20px;
+    }
+
+    .tabs div {
+      margin-right: 20px;
+      font-weight: bold;
+      color: #fff;
+     opacity: 0.6;
+      border:none;
+      cursor: pointer;
+    }
+    .about-box, .post-box {
+      background-color: #000;
+      color: #fff;
+      width: 850px;
+      margin: 20px auto;
+      padding: 15px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .timeline {
+      position: fixed;
+      right: 30px;
+      top: 300px;
+      background:#121212;
+      padding: 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      font-size: 12px;
+    }
+
+    .timeline div {
+      padding: 2px 0;
+      color: #365899;
+      cursor: pointer;
+    }
+
+    .buttons {
+      position: absolute;
+      top: 300px;
+      right: 20px;
+    }
+
+    .buttons button {
+      background: #121212;
+      border: 1px solid #ccc;
+color: #fff;
+      padding: 5px 10px;
+      margin-left: 5px;
+      border-radius: 2px;
+      cu
+</style>
 <body>
   <div class="topmessage">
     <div class="nottonu">
@@ -31,7 +125,41 @@
     </div>
   </div>
   <div class="iframe">
-  <iframe class="" src="./iframe.html" frameborder="0"></iframe>  
+<br><br><br><br>
+  <div class="profile-header">
+    <img class="cover-photo" src="https://i.imgur.com/oWx9iQb.jpg" alt="Capa">
+    <img class="profile-pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBihdSKtfsZSRygOBBkTpYJzSF8I7llaHV3g&s" alt="Perfil">
+    <div class="profile-info">
+      <h2>Kyle Meyer<span>
+    <box-icon name='badge-check' type='solid' color='#3193e4' ></box-icon>
+    </span>
+</h2>
+    </div>
+    <div class="buttons">
+      <button>✓ Friends</button>
+      <button>Message</button>
+      <button>Call</button>
+    </div>
+    <div class="tabs">
+      <div>Timeline</div>
+      <div>About</div>
+      <div>Friends <small>(19 Mutual)</small></div>
+      <div>Photos <small>(47)</small></div>
+      <div>More</div>
+    </div>
+  </div>
+
+  <div class="about-box">
+    <strong>Sobre mim</strong><br>
+    Product Designer at <strong style="color: #365899;">Facebook</strong><br>
+    Past: Big Cartel and Clockwork Active Media Systems
+  </div>
+
+  <!--div class="post-box">
+    <strong>Post</strong> &nbsp; <strong>Photo</strong> &nbsp; <strong>Gift</strong>
+    <textarea rows="3" placeholder="What's on your mind?" style="width:100%; margin-top:10px;"></textarea>
+  </div-->
+
   </div>
       <script>
 function iframE() {
