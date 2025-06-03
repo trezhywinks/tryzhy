@@ -20,6 +20,25 @@ body {
     overflow: hidden;
 }
 
+   .buttons {
+      position: absolute;
+      top: 300px;
+      right: 20px;
+    }
+
+    .buttons button {
+      background: #121212;
+      border: 1px solid #ccc;
+     color: #fff;
+      padding: 5px 10px;  
+      margin-left: 5px;
+      border-radius: 2px;
+      cursor: pointer;
+      font-family: var(--sam);
+      font-weight: 600;
+}
+
+
 .foto-usuario{
 width: 40px;
 height: 40px;
