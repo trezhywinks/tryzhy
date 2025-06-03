@@ -194,7 +194,7 @@ margin: 0 auto 10px;
     display: flex;
 }
 .iframe{
-    background: #181818;
+    background: #000;
     height:100vh;
     position: fixed;
     left: 0; 
