@@ -130,7 +130,7 @@ color: #fff;
     <img class="cover-photo" src="https://i.imgur.com/oWx9iQb.jpg" alt="Capa">
     <img class="profile-pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBihdSKtfsZSRygOBBkTpYJzSF8I7llaHV3g&s" alt="Perfil">
     <div class="profile-info">
-      <h2>Kyle Meyer<span>
+      <h2 class="kyle">Kyle Meyer<span>
     <box-icon name='badge-check' type='solid' color='#3193e4' ></box-icon>
     </span>
 </h2>
@@ -150,9 +150,11 @@ color: #fff;
   </div>
 
   <div class="about-box">
-    <strong>Sobre mim</strong><br>
+    <strong style="opacity:0.6;">Sobre mim</strong><br><br>
+<strong style="opacity: 1;">
     Product Designer at <strong style="color: #365899;">Facebook</strong><br>
     Past: Big Cartel and Clockwork Active Media Systems
+</strong>
   </div>
 
   <!--div class="post-box">
@@ -565,13 +567,16 @@ async function carregarMig(otherUser) {
       nome: data.username,
       foto: data.image.startsWith('data:image') ? data.image : `data:image/png;base64,${data.image}`
     };
-
+    const kyle = document.querySelector('.kyle');
     const migmig = document.querySelector('.migimage');
     const migname = document.querySelector('.migname');
     const migmigY = document.querySelector('.migimageY');
     const mignameY = document.querySelector('.mignameY');
+   profile_pic = document.querySelector('.profile-pic');
 
     migmig.src = currentUser.foto;
+    profile_pic.src = currentUser.foto;
+    kyle.innerText = currentUser.nome;
     migname.innerText = currentUser.nome;
     migmigY.src = currentUser.foto;
     mignameY.innerText = currentUser.nome;
