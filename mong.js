@@ -19,8 +19,8 @@ const cache = new NodeCache({ stdTTL: 600 });
 app.use(cors());
 
 
-mongoose.connect('mongodb+srv://dreqxyxl:6IGYoQbTfDqfQCb4@winewinks.ajyhewm.mongodb.net/tryzhykim?retryWrites=true&w=majority', {
-//mongoose.connect('mongodb+srv://dreqxyxl:5jvkLqtTRsDcgvY1@winewinks.ajyhewm.mongodb.net/?retryWrites=true&w=majority&appName=winewinks', {
+//mongoose.connect('mongodb+srv://dreqxyxl:6IGYoQbTfDqfQCb4@winewinks.ajyhewm.mongodb.net/tryzhykim?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://dreqxyxl:5jvkLqtTRsDcgvY1@winewinks.ajyhewm.mongodb.net/?retryWrites=true&w=majority&appName=winewinks', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
