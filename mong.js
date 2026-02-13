@@ -20,7 +20,8 @@ app.use(cors());
 
 
 //mongoose.connect('mongodb+srv://dreqxyxl:6IGYoQbTfDqfQCb4@winewinks.ajyhewm.mongodb.net/tryzhykim?retryWrites=true&w=majority', {
-mongoose.connect('mongodb+srv://dreqxyxl:5jvkLqtTRsDcgvY1@winewinks.ajyhewm.mongodb.net/?retryWrites=true&w=majority&appName=winewinks', {
+//mongoose.connect('mongodb+srv://dreqxyxl:5jvkLqtTRsDcgvY1@winewinks.ajyhewm.mongodb.net/?retryWrites=true&w=majority&appName=winewinks', {
+ mongoose.connect("mongodb+srv://trezhy:lWn7NInsHxJtoOG5@cluster0.oedzme4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
